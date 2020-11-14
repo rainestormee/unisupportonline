@@ -13,7 +13,7 @@ function showResult(str) {
 }
 
 function activateFirst() {
-    this.getConversations()[0].classList.add("active");
+    this.getConversations().get(0).classList.add("active");
 }
 
 function switchChatMessage(name) {
