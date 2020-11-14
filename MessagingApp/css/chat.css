@@ -254,9 +254,6 @@ body{
     font-size: 1.4rem;
 }
 
-#chat-form > img{
-    width: 30px;
-}
 
 ::-webkit-scrollbar{
     display: none;
