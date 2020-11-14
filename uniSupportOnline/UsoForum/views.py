@@ -59,7 +59,7 @@ def help(request):
 
 
 def login(request):
-row = session.execute("SELECT username, password FROM unisupport.users where username = %s AND password = %s ALLOW FILTERING;",[userVar, passVar])
+    row = session.execute("SELECT username, password FROM unisupport.users where username = %s AND password = %s ALLOW FILTERING;",[userVar, passVar])
 
 if not row:
     response={"bool":True, "user":userVar}
