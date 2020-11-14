@@ -21,8 +21,8 @@ body {
 }
 
 
-#header{
-  background-image: url('../{% static '/images/help2.jpg');
+#header {
+  background-image: url('/static/images/help2.jpg');
   background-position: right;
   background-size: contain;
   background-color: red;
