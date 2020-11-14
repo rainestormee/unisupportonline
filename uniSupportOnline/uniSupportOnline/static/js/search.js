@@ -12,6 +12,10 @@ function showResult(str) {
     }
 }
 
+function activateFirst() {
+    this.getConversations()[0].classList.add("active");
+}
+
 function switchChatMessage(name) {
     this.getConversations().forEach(e => {
         if (e.id === name) {
