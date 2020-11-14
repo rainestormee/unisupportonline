@@ -69,10 +69,6 @@
         </div>
 
 
-		{% for user in users %}
-		<p>user.name</p>
-		{% endfor %}
-
         <div id="conversation-list">
             {% for user in users %}
             <div class="conversation" id="{{ user.name }}" onclick="switchChatMessage('{{ user.name}}');">
