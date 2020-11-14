@@ -10,12 +10,12 @@
 <body>
 <div id="chat-container">
     <div id="search-container">
-        <input type="text" placeholder="Search" onkeyup="showResult(this.value)"/>
+        <input type="text" placeholder="Search" onkeyup="showResult(this.value);"/>
         <!-- Search for the receiver has the user id-->
     </div>
 
     <div id="conversation-list">
-        <div class="conversation active" id="Stinky Alex">
+        <div class="conversation active" id="Stinky Alex" onclick="switchChatMessage('Stinky Alex');">
             <img src="images/profiles/kanye.jpg" alt="Stinky Alex"/>
             <div class="title-text">
                 Stinky Alex
@@ -28,7 +28,7 @@
             </div>
         </div>
 
-        <div class="conversation" id="Another User">
+        <div class="conversation" id="Another User" onclick="switchChatMessage('Another User');">
             <img src="images/profiles/kanye.jpg" alt="Stinky Alex"/>
             <div class="title-text">
                 Another User
