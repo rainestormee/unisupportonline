@@ -59,7 +59,13 @@ def help(request):
 
 
 def login(request):
-    return render(request, 'login.html')
+row = session.execute("SELECT username, password FROM unisupport.users where username = %s AND password = %s ALLOW FILTERING;",[userVar, passVar])
+
+if not row:
+    response={"bool":True, "user":userVar}
+else:
+    response={"bool":False, "user":""}
+    return render(request, 'login.html',{'response':response})
 
 
 def search(request):
