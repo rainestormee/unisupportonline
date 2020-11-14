@@ -15,10 +15,9 @@ function showResult(str) {
 function switchChatMessage(name) {
     this.getConversations().forEach(e => {
         if (e.id === name) {
-            e.class = "conversation active";
-            console.log(e.id);
+            e.classList.add("active")
         } else {
-            e.class = "conversation";
+            e.classList.remove("active")
         }
     });
 }
