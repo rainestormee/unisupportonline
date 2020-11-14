@@ -25,7 +25,7 @@ SECRET_KEY = 'k$9l4l^2m2xt))*=i==hek^)=6h%pc(lco2i)z^s*1rwdi5a7)'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["79.112.139.207", "unisupport.online"]
+ALLOWED_HOSTS = ["79.112.139.207", "unisupport.online","*"]
 
 
 # Application definition
