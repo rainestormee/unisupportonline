@@ -10,3 +10,4 @@
 out/
 .idea_modules/
 .history/
+*.pyc
