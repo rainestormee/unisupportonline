@@ -13,6 +13,7 @@ function showResult(str) {
 }
 
 function activateFirst() {
+    console.log("i want to die");
     this.getConversations().get(0).classList.add("active");
 }
 
