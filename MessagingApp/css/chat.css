@@ -72,6 +72,7 @@ body{
 
 #conversation-list{
     grid-area: conversation-list;
+    overflow-y: scroll;
 }
 
 .conversation{
@@ -85,11 +86,11 @@ body{
 }
 
 .conversation.active,
-.conversation::hover {
+.conversation:hover {
     background: #002C88;
 }
 
-.conversation.conversation::hover{
+.conversation.conversation:hover{
     cursor: pointer;
 }
 
@@ -162,6 +163,7 @@ body{
 
 #chat-title > img{
     cursor:pointer;
+    width: 50px;
 }
 
 #chat-message-list{
@@ -187,4 +189,12 @@ body{
     color: #330;
     border-radius: 6px;
     font-size: 1.4rem;
+}
+
+#chat-form > img{
+    width: 30px;
+}
+
+::-webkit-scrollbar{
+    display: none;
 }
