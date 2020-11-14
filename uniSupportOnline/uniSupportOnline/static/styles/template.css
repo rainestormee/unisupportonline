@@ -22,7 +22,7 @@ body {
 
 
 #header{
-  background-image: url('../Styles/images/help2.jpg');
+  background-image: url('../{% static '/images/help2.jpg');
   background-position: right;
   background-size: contain;
   background-color: red;

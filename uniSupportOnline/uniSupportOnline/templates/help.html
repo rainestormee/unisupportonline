@@ -5,14 +5,14 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Unisupport</title>
-	<link rel="shortcut icon" href="Styles/images/logo.png">
+	<link rel="shortcut icon" href="{% static '/images/logo.png' %}">
 	<!-- Bootstrap 4.5 CSS -->
-	<link rel="stylesheet" href="Styles/bootstrap.min.css">
-  <link rel="stylesheet" href="Styles/bootstrap.css">
+	<link rel="stylesheet" href="{% static '/styles/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static '/styles/bootstrap.css' %}">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 	<!-- Style CSS -->
-	 <link rel="stylesheet" type="text/css" media="screen" href="Styles/chat.css">
-	<link rel="stylesheet" href="Styles/template.css">
+	 <link rel="stylesheet" type="text/css" media="screen" href="{% static '/styles/chat.css' %}">
+	<link rel="stylesheet" href="{% static '/styles/template.css' %}">
 	<!-- Google Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700&display=swap" rel="stylesheet">
 </head>
@@ -40,13 +40,13 @@
         <span class="navbar-togler-icon"></span>
       </button>
 
-      <!-- <a class="navbar-brand" href="index.html"><img src="Styles/images/logo.png" alt=""></a> -->
+      <!-- <a class="navbar-brand" href="index"><img src="{% static '/images/logo.png' %}" alt=""></a> -->
 
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-				<li class="nav-item"><a class="nav-link" href="home.html">Home</a></li>
-				<li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
-				<li class="nav-item"><a class="nav-link" href="help.html">Help center</a></li>
-				<li class="nav-item"><a class="nav-link" href="search.html">Search</a></li>
+				<li class="nav-item"><a class="nav-link" href="home">Home</a></li>
+				<li class="nav-item"><a class="nav-link" href="dashboard">Dashboard</a></li>
+				<li class="nav-item"><a class="nav-link" href="help">Help center</a></li>
+				<li class="nav-item"><a class="nav-link" href="search">Search</a></li>
       </ul>
 
       <div class="container col-md-4" style="margin-right: 0">
@@ -68,7 +68,7 @@
 	
 		<div id="conversation-list">
 			<div class="conversation active" id="Stinky Alex" onclick="switchChatMessage('Stinky Alex');">
-				<img src="Styles/images/profiles/kanye.jpg" alt="Stinky Alex"/>
+				<img src="{% static '/images/profiles/kanye.jpg' %}" alt="Stinky Alex"/>
 				<div class="title-text">
 					Stinky Alex
 				</div>
@@ -81,7 +81,7 @@
 			</div>
 	
 			<div class="conversation" id="Another User" onclick="switchChatMessage('Another User');">
-				<img src="Styles/images/profiles/kanye.jpg" alt="Stinky Alex"/>
+				<img src="{% static '/images/profiles/kanye.jpg' %}" alt="Stinky Alex"/>
 				<div class="title-text">
 					Another User
 				</div>
@@ -94,7 +94,7 @@
 			</div>
 	
 			<div class="conversation" id="This Isn't Kayne">
-				<img src="Styles/images/profiles/kanye.jpg" alt="Stinky Alex"/>
+				<img src="{% static '/images/profiles/kanye.jpg' %}" alt="Stinky Alex"/>
 				<div class="title-text">
 					This Isn't Kayne
 				</div>
@@ -107,7 +107,7 @@
 			</div>
 	
 			<div class="conversation" id="Kayne Not">
-				<img src="Styles/images/profiles/kanye.jpg" alt="Stinky Alex"/>
+				<img src="{% static '/images/profiles/kanye.jpg' %}" alt="Stinky Alex"/>
 				<div class="title-text">
 					Kayne Not
 				</div>
@@ -120,7 +120,7 @@
 			</div>
 	
 			<div class="conversation" id="Justin Beiber">
-				<img src="Styles/images/profiles/kanye.jpg" alt="Stinky Alex"/>
+				<img src="{% static '/images/profiles/kanye.jpg' %}" alt="Stinky Alex"/>
 				<div class="title-text">
 					Justin Beiber
 				</div>
@@ -133,7 +133,7 @@
 			</div>
 	
 			<div class="conversation" id="Shrek All Stars">
-				<img src="Styles/images/profiles/kanye.jpg" alt="Stinky Alex"/>
+				<img src="{% static '/images/profiles/kanye.jpg' %}" alt="Stinky Alex"/>
 				<div class="title-text">
 					Shrek All Stars
 				</div>
@@ -146,7 +146,7 @@
 			</div>
 	
 			<div class="conversation" id="Some Body Once Told Me">
-				<img src="Styles/images/profiles/kanye.jpg" alt="Stinky Alex"/>
+				<img src="{% static '/images/profiles/kanye.jpg' %}" alt="Stinky Alex"/>
 				<div class="title-text">
 					Some Body Once Told Me
 				</div>
@@ -159,7 +159,7 @@
 			</div>
 	
 			<div class="conversation" id="The world was gonna roll me">
-				<img src="Styles/images/profiles/kanye.jpg" alt="Stinky Alex"/>
+				<img src="{% static '/images/profiles/kanye.jpg' %}" alt="Stinky Alex"/>
 				<div class="title-text">
 					The world was gonna roll me
 				</div>
@@ -172,7 +172,7 @@
 			</div>
 	
 			<div class="conversation" id="I aint the sharpest tool in the shed">
-				<img src="Styles/images/profiles/kanye.jpg" alt="Stinky Alex"/>
+				<img src="{% static '/images/profiles/kanye.jpg' %}" alt="Stinky Alex"/>
 				<div class="title-text">
 					I aint the sharpest tool in the shed
 				</div>
@@ -185,7 +185,7 @@
 			</div>
 	
 			<div class="conversation" id="she was looking kinda dumb">
-				<img src="Styles/images/profiles/kanye.jpg" alt="Stinky Alex"/>
+				<img src="{% static '/images/profiles/kanye.jpg' %}" alt="Stinky Alex"/>
 				<div class="title-text">
 					she was looking kinda dumb
 				</div>
@@ -203,7 +203,7 @@
 		</div>
 		<div id="chat-title">
 			<span>Stinky Alex</span>
-			<img src="Styles/images/icons/trash-logo.svg" alt="Delete Conversation"/>
+			<img src="{% static '/images/icons/trash-logo.svg' %}" alt="Delete Conversation"/>
 		</div>
 		<div id="chat-message-list">
 			<div class="message-row you-message">
@@ -241,13 +241,13 @@
   <footer>
     <div class="row">
 			<div class="col-md-4 text-center">
-        <a href="terms.html">Terms of Service</a>
+        <a href="terms">Terms of Service</a>
       </div>
       <div class="col-md-4 text-center">
-        <a href="about.html">About</a>
+        <a href="about">About</a>
       </div>
       <div class="col-md-4 text-center">
-        <a href="contact.html">Contact</a>
+        <a href="contact">Contact</a>
       </div>
       <div class="container text-center" style="margin-top: 2rem;">
         <p>Copyright 2020 Unisuppport</p>
@@ -259,13 +259,13 @@
 	<!-- Script Source Files -->
 
 	<!-- jQuery -->
-	<script src="Styles/js/jquery-3.5.1.min.js"></script>
+	<script src="{% static '/js/jquery-3.5.1.min.js %}"></script>
 	<!-- Bootstrap 4.5 JS -->
-	<script src="Styles/js/bootstrap.min.js"></script>
+	<script src="{% static '/js/bootstrap.min.js' %}"></script>
 	<!-- Popper JS -->
-	<script src="Styles/js/popper.min.js"></script>
+	<script src="{% static '/js/popper.min.js' %}"></script>
 	<!-- Font Awesome -->
-	<script src="Styles/js/all.min.js"></script>
+	<script src="{% static '/js/all.min.js' %}"></script>
 
 	<!-- End Script Source Files -->
 </body>
