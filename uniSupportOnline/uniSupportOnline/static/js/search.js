@@ -4,9 +4,9 @@ function showResult(str) {
     } else {
         this.getConversations().forEach(e => {
             if (e.id.toLowerCase().includes(str.toLowerCase())) {
-                e.style.display = "grid";
+                //e.style.display = "grid";
             } else {
-                e.style.display = "none";
+                //e.style.display = "none";
             }
         });
     }
