@@ -68,10 +68,15 @@
             <!-- Search for the receiver has the user id-->
         </div>
 
+
+		{% for user in users %}
+		<p>user.name</p>
+		{% endfor %}
+
         <div id="conversation-list">
             {% for user in users %}
             <div class="conversation" id="{{ user.name }}" onclick="switchChatMessage('{{ user.name}}');">
-                <img alt="{{ user.name }}" src="{% static '/images/profiles/kanye.jpg' %}"/>
+                <img alt="{{ user.1 }}" src="{% static '/images/profiles/kanye.jpg' %}"/>
                 <div class="title-text">
                     {{ user.name }}
                 </div>
