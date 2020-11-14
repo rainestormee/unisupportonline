@@ -69,10 +69,11 @@
         </div>
 
         <div id="conversation-list">
-            <div class="conversation active" id="Stinky Alex" onclick="switchChatMessage('Stinky Alex');">
-                <img alt="Stinky Alex" src="{% static '/images/profiles/kanye.jpg' %}"/>
+            {% for user in users %}
+            <div class="conversation" id="{{ user.name }}" onclick="switchChatMessage('{{ user.name}}');">
+                <img alt="{{ user.name }}" src="{% static '/images/profiles/kanye.jpg' %}"/>
                 <div class="title-text">
-                    Stinky Alex
+                    {{ user.name }}
                 </div>
                 <div class="created-date" id>
                     Apr 16
@@ -81,125 +82,8 @@
                     This is a message
                 </div>
             </div>
-
-            <div class="conversation" id="Another User" onclick="switchChatMessage('Another User');">
-                <img alt="Stinky Alex" src="{% static '/images/profiles/kanye.jpg' %}"/>
-                <div class="title-text">
-                    Another User
-                </div>
-                <div class="created-date">
-                    Apr 16
-                </div>
-                <div class="conversation-message">
-                    This is a message
-                </div>
-            </div>
-
-            <div class="conversation" id="This Isn't Kayne">
-                <img alt="Stinky Alex" src="{% static '/images/profiles/kanye.jpg' %}"/>
-                <div class="title-text">
-                    This Isn't Kayne
-                </div>
-                <div class="created-date">
-                    Apr 16
-                </div>
-                <div class="conversation-message">
-                    This is a message
-                </div>
-            </div>
-
-            <div class="conversation" id="Kayne Not">
-                <img alt="Stinky Alex" src="{% static '/images/profiles/kanye.jpg' %}"/>
-                <div class="title-text">
-                    Kayne Not
-                </div>
-                <div class="created-date">
-                    Apr 16
-                </div>
-                <div class="conversation-message">
-                    This is a message
-                </div>
-            </div>
-
-            <div class="conversation" id="Justin Beiber">
-                <img alt="Stinky Alex" src="{% static '/images/profiles/kanye.jpg' %}"/>
-                <div class="title-text">
-                    Justin Beiber
-                </div>
-                <div class="created-date">
-                    Apr 16
-                </div>
-                <div class="conversation-message">
-                    This is a message
-                </div>
-            </div>
-
-            <div class="conversation" id="Shrek All Stars">
-                <img alt="Stinky Alex" src="{% static '/images/profiles/kanye.jpg' %}"/>
-                <div class="title-text">
-                    Shrek All Stars
-                </div>
-                <div class="created-date">
-                    Apr 16
-                </div>
-                <div class="conversation-message">
-                    This is a message
-                </div>
-            </div>
-
-            <div class="conversation" id="Some Body Once Told Me">
-                <img alt="Stinky Alex" src="{% static '/images/profiles/kanye.jpg' %}"/>
-                <div class="title-text">
-                    Some Body Once Told Me
-                </div>
-                <div class="created-date">
-                    Apr 16
-                </div>
-                <div class="conversation-message">
-                    This is a message
-                </div>
-            </div>
-
-            <div class="conversation" id="The world was gonna roll me">
-                <img alt="Stinky Alex" src="{% static '/images/profiles/kanye.jpg' %}"/>
-                <div class="title-text">
-                    The world was gonna roll me
-                </div>
-                <div class="created-date">
-                    Apr 16
-                </div>
-                <div class="conversation-message">
-                    This is a message
-                </div>
-            </div>
-
-            <div class="conversation" id="I aint the sharpest tool in the shed">
-                <img alt="Stinky Alex" src="{% static '/images/profiles/kanye.jpg' %}"/>
-                <div class="title-text">
-                    I aint the sharpest tool in the shed
-                </div>
-                <div class="created-date">
-                    Apr 16
-                </div>
-                <div class="conversation-message">
-                    This is a message
-                </div>
-            </div>
-
-            <div class="conversation" id="she was looking kinda dumb">
-                <img alt="Stinky Alex" src="{% static '/images/profiles/kanye.jpg' %}"/>
-                <div class="title-text">
-                    she was looking kinda dumb
-                </div>
-                <div class="created-date">
-                    Apr 16
-                </div>
-                <div class="conversation-message">
-                    This is a message
-                </div>
-            </div>
+            {% endfor %}
         </div>
-
         <div id="new-message-container">
             <a href="#">+</a>
         </div>
