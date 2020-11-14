@@ -1,47 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	{% load static %}
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<title>Unisupport</title>
-	<link rel="shortcut icon" href="{% static '/images/logo.png' %}">
-	<!-- Bootstrap 4.5 CSS -->
-	<link rel="stylesheet" href="{% static '/styles/bootstrap.min.css' %}">
-  <link rel="stylesheet" href="{% static '/styles/bootstrap.css' %}">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
-	<!-- Style CSS -->
-	 <link rel="stylesheet" type="text/css" media="screen" href="{% static '/styles/chat.css' %}">
-	<link rel="stylesheet" href="{% static '/styles/template.css' %}">
-	<!-- Google Fonts -->
-	<link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700&display=swap" rel="stylesheet">
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport">
+    <meta content="ie=edge" http-equiv="X-UA-Compatible">
+    <title>Unisupport</title>
+    <link href="{% static '/images/logo.png' %}" rel="shortcut icon">
+    <!-- Bootstrap 4.5 CSS -->
+    <link href="{% static '/styles/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static '/styles/bootstrap.css' %}" rel="stylesheet">
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+          integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" rel="stylesheet">
+    <!-- Style CSS -->
+    <link href="{% static '/styles/chat.css' %}" media="screen" rel="stylesheet" type="text/css">
+    <link href="{% static '/styles/template.css' %}" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700&display=swap" rel="stylesheet">
 </head>
 <body>
 
-	<!-- Top Bar -->
-  <div class="top-bar sticky-top">
+<!-- Top Bar -->
+<div class="top-bar sticky-top">
     <div class="container">
-      <div class="col-12 text-right">
-        <p><a href="tel:+1234">Emergency line:  +123 456 789</a></p>
-      </div>
+        <div class="col-12 text-right">
+            <p><a href="tel:+1234">Emergency line: +123 456 789</a></p>
+        </div>
 
     </div>
-  </div>
-	<!-- End Top Bar -->
+</div>
+<!-- End Top Bar -->
 
 
-	<!-- Navigation -->
-  <div class="jumbotron">
+<!-- Navigation -->
+<div class="jumbotron">
     <h1>Unisupport</h1>
     <p>Your safe space</p>
-  </div>
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
-      <button class="navbar-toggler" data-toggle="collapse" data-target="collapse_target">
+</div>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
+    <button class="navbar-toggler" data-target="collapse_target" data-toggle="collapse">
         <span class="navbar-togler-icon"></span>
-      </button>
+    </button>
 
-      <!-- <a class="navbar-brand" href="index"><img src="{% static '/images/logo.png' %}" alt=""></a> -->
+    <!-- <a class="navbar-brand" href="index"><img src="{% static '/images/logo.png' %}" alt=""></a> -->
 
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 				<li class="nav-item"><a class="nav-link" href="../">Home</a></li>
@@ -50,215 +51,216 @@
 				<li class="nav-item"><a class="nav-link" href="../search">Search</a></li>
       </ul>
 
-      <div class="container col-md-4" style="margin-right: 0">
+    <div class="container col-md-4" style="margin-right: 0">
         Logged in as: user
-      </div>
+    </div>
 
-    </nav>
-	<!-- End Navigation -->
+</nav>
+<!-- End Navigation -->
 
 
 <!-- Start Main -->
 <section class='main'>
-	<script src="../static/js/search.js"></script>
-	<div id="chat-container">
-		<div id="search-container">
-			<input type="text" placeholder="Search" onkeyup="showResult(this.value);"/>
-			<!-- Search for the receiver has the user id-->
-		</div>
-	
-		<div id="conversation-list">
-			<div class="conversation active" id="Stinky Alex" onclick="switchChatMessage('Stinky Alex');">
-				<img src="{% static '/images/profiles/kanye.jpg' %}" alt="Stinky Alex"/>
-				<div class="title-text">
-					Stinky Alex
-				</div>
-				<div class="created-date" id>
-					Apr 16
-				</div>
-				<div class="conversation-message">
-					This is a message
-				</div>
-			</div>
-	
-			<div class="conversation" id="Another User" onclick="switchChatMessage('Another User');">
-				<img src="{% static '/images/profiles/kanye.jpg' %}" alt="Stinky Alex"/>
-				<div class="title-text">
-					Another User
-				</div>
-				<div class="created-date">
-					Apr 16
-				</div>
-				<div class="conversation-message">
-					This is a message
-				</div>
-			</div>
-	
-			<div class="conversation" id="This Isn't Kayne">
-				<img src="{% static '/images/profiles/kanye.jpg' %}" alt="Stinky Alex"/>
-				<div class="title-text">
-					This Isn't Kayne
-				</div>
-				<div class="created-date">
-					Apr 16
-				</div>
-				<div class="conversation-message">
-					This is a message
-				</div>
-			</div>
-	
-			<div class="conversation" id="Kayne Not">
-				<img src="{% static '/images/profiles/kanye.jpg' %}" alt="Stinky Alex"/>
-				<div class="title-text">
-					Kayne Not
-				</div>
-				<div class="created-date">
-					Apr 16
-				</div>
-				<div class="conversation-message">
-					This is a message
-				</div>
-			</div>
-	
-			<div class="conversation" id="Justin Beiber">
-				<img src="{% static '/images/profiles/kanye.jpg' %}" alt="Stinky Alex"/>
-				<div class="title-text">
-					Justin Beiber
-				</div>
-				<div class="created-date">
-					Apr 16
-				</div>
-				<div class="conversation-message">
-					This is a message
-				</div>
-			</div>
-	
-			<div class="conversation" id="Shrek All Stars">
-				<img src="{% static '/images/profiles/kanye.jpg' %}" alt="Stinky Alex"/>
-				<div class="title-text">
-					Shrek All Stars
-				</div>
-				<div class="created-date">
-					Apr 16
-				</div>
-				<div class="conversation-message">
-					This is a message
-				</div>
-			</div>
-	
-			<div class="conversation" id="Some Body Once Told Me">
-				<img src="{% static '/images/profiles/kanye.jpg' %}" alt="Stinky Alex"/>
-				<div class="title-text">
-					Some Body Once Told Me
-				</div>
-				<div class="created-date">
-					Apr 16
-				</div>
-				<div class="conversation-message">
-					This is a message
-				</div>
-			</div>
-	
-			<div class="conversation" id="The world was gonna roll me">
-				<img src="{% static '/images/profiles/kanye.jpg' %}" alt="Stinky Alex"/>
-				<div class="title-text">
-					The world was gonna roll me
-				</div>
-				<div class="created-date">
-					Apr 16
-				</div>
-				<div class="conversation-message">
-					This is a message
-				</div>
-			</div>
-	
-			<div class="conversation" id="I aint the sharpest tool in the shed">
-				<img src="{% static '/images/profiles/kanye.jpg' %}" alt="Stinky Alex"/>
-				<div class="title-text">
-					I aint the sharpest tool in the shed
-				</div>
-				<div class="created-date">
-					Apr 16
-				</div>
-				<div class="conversation-message">
-					This is a message
-				</div>
-			</div>
-	
-			<div class="conversation" id="she was looking kinda dumb">
-				<img src="{% static '/images/profiles/kanye.jpg' %}" alt="Stinky Alex"/>
-				<div class="title-text">
-					she was looking kinda dumb
-				</div>
-				<div class="created-date">
-					Apr 16
-				</div>
-				<div class="conversation-message">
-					This is a message
-				</div>
-			</div>
-		</div>
-	
-		<div id="new-message-container">
-			<a href="#">+</a>
-		</div>
-		<div id="chat-title">
-			<span>Stinky Alex</span>
-			<img src="{% static '/images/icons/trash-logo.svg' %}" alt="Delete Conversation"/>
-		</div>
-		<div id="chat-message-list">
-			<div class="message-row you-message">
-				<div class="message-content">
-					<div class="message-text">Oki doki</div>
-					<div class="message-time">Apr 16</div>
-				</div>
-			</div>
-			<div class="message-row other-message">
-				<div class="message-content">
-					<div class="message-text">
-						Ndfsdffsdfsdfdsfsfdfsddasasasdasdasdadsdasdsadsdsaadsadsasdasddsa
-						a
-						sd
-						dsa
-						asd
-						dwddw
-						dwdwdw
-					</div>
-					<div class="message-time">Nov 30</div>
-				</div>
-			</div>
-		</div>
-		<div id="chat-form">
-			<br>
-			<input type="text" placeholder="Type a message"/>
-		</div>
-	</div>
+    <script src="../static/js/search.js"></script>
+    <div id="chat-container">
+        <div id="search-container">
+            <input onkeyup="showResult(this.value);" placeholder="Search" type="text"/>
+            <!-- Search for the receiver has the user id-->
+        </div>
+
+        <div id="conversation-list">
+            <div class="conversation active" id="Stinky Alex" onclick="switchChatMessage('Stinky Alex');">
+                <img alt="Stinky Alex" src="{% static '/images/profiles/kanye.jpg' %}"/>
+                <div class="title-text">
+                    Stinky Alex
+                </div>
+                <div class="created-date" id>
+                    Apr 16
+                </div>
+                <div class="conversation-message">
+                    This is a message
+                </div>
+            </div>
+
+            <div class="conversation" id="Another User" onclick="switchChatMessage('Another User');">
+                <img alt="Stinky Alex" src="{% static '/images/profiles/kanye.jpg' %}"/>
+                <div class="title-text">
+                    Another User
+                </div>
+                <div class="created-date">
+                    Apr 16
+                </div>
+                <div class="conversation-message">
+                    This is a message
+                </div>
+            </div>
+
+            <div class="conversation" id="This Isn't Kayne">
+                <img alt="Stinky Alex" src="{% static '/images/profiles/kanye.jpg' %}"/>
+                <div class="title-text">
+                    This Isn't Kayne
+                </div>
+                <div class="created-date">
+                    Apr 16
+                </div>
+                <div class="conversation-message">
+                    This is a message
+                </div>
+            </div>
+
+            <div class="conversation" id="Kayne Not">
+                <img alt="Stinky Alex" src="{% static '/images/profiles/kanye.jpg' %}"/>
+                <div class="title-text">
+                    Kayne Not
+                </div>
+                <div class="created-date">
+                    Apr 16
+                </div>
+                <div class="conversation-message">
+                    This is a message
+                </div>
+            </div>
+
+            <div class="conversation" id="Justin Beiber">
+                <img alt="Stinky Alex" src="{% static '/images/profiles/kanye.jpg' %}"/>
+                <div class="title-text">
+                    Justin Beiber
+                </div>
+                <div class="created-date">
+                    Apr 16
+                </div>
+                <div class="conversation-message">
+                    This is a message
+                </div>
+            </div>
+
+            <div class="conversation" id="Shrek All Stars">
+                <img alt="Stinky Alex" src="{% static '/images/profiles/kanye.jpg' %}"/>
+                <div class="title-text">
+                    Shrek All Stars
+                </div>
+                <div class="created-date">
+                    Apr 16
+                </div>
+                <div class="conversation-message">
+                    This is a message
+                </div>
+            </div>
+
+            <div class="conversation" id="Some Body Once Told Me">
+                <img alt="Stinky Alex" src="{% static '/images/profiles/kanye.jpg' %}"/>
+                <div class="title-text">
+                    Some Body Once Told Me
+                </div>
+                <div class="created-date">
+                    Apr 16
+                </div>
+                <div class="conversation-message">
+                    This is a message
+                </div>
+            </div>
+
+            <div class="conversation" id="The world was gonna roll me">
+                <img alt="Stinky Alex" src="{% static '/images/profiles/kanye.jpg' %}"/>
+                <div class="title-text">
+                    The world was gonna roll me
+                </div>
+                <div class="created-date">
+                    Apr 16
+                </div>
+                <div class="conversation-message">
+                    This is a message
+                </div>
+            </div>
+
+            <div class="conversation" id="I aint the sharpest tool in the shed">
+                <img alt="Stinky Alex" src="{% static '/images/profiles/kanye.jpg' %}"/>
+                <div class="title-text">
+                    I aint the sharpest tool in the shed
+                </div>
+                <div class="created-date">
+                    Apr 16
+                </div>
+                <div class="conversation-message">
+                    This is a message
+                </div>
+            </div>
+
+            <div class="conversation" id="she was looking kinda dumb">
+                <img alt="Stinky Alex" src="{% static '/images/profiles/kanye.jpg' %}"/>
+                <div class="title-text">
+                    she was looking kinda dumb
+                </div>
+                <div class="created-date">
+                    Apr 16
+                </div>
+                <div class="conversation-message">
+                    This is a message
+                </div>
+            </div>
+        </div>
+
+        <div id="new-message-container">
+            <a href="#">+</a>
+        </div>
+        <div id="chat-title">
+            <span>Stinky Alex</span>
+            <img alt="Delete Conversation" src="{% static '/images/icons/trash-logo.svg' %}"/>
+        </div>
+        <div id="chat-message-list">
+            <div class="message-row you-message">
+                <div class="message-content">
+                    <div class="message-text">Oki doki</div>
+                    <div class="message-time">Apr 16</div>
+                </div>
+            </div>
+            <div class="message-row other-message">
+                <div class="message-content">
+                    <div class="message-text">
+                        Ndfsdffsdfsdfdsfsfdfsddasasasdasdasdadsdasdsadsdsaadsadsasdasddsa
+                        a
+                        sd
+                        dsa
+                        asd
+                        dwddw
+                        dwdwdw
+                    </div>
+                    <div class="message-time">Nov 30</div>
+                </div>
+            </div>
+        </div>
+        <div id="chat-form">
+            <br>
+            <input placeholder="Type a message" type="text"/>
+        </div>
+    </div>
 </section>
 
 
 <!-- End Main -->
 
-	<!-- Start Footer -->
-  <footer>
+<!-- Start Footer -->
+<footer>
     <div class="row">
-			<div class="col-md-4 text-center">
-        <a href="terms">Terms of Service</a>
-      </div>
-      <div class="col-md-4 text-center">
-        <a href="about">About</a>
-      </div>
-      <div class="col-md-4 text-center">
-        <a href="contact">Contact</a>
-      </div>
-      <div class="container text-center" style="margin-top: 2rem;">
-        <p>Copyright 2020 Unisuppport</p>
-      </div>
+        <div class="col-md-4 text-center">
+            <a href="terms">Terms of Service</a>
+        </div>
+        <div class="col-md-4 text-center">
+            <a href="about">About</a>
+        </div>
+        <div class="col-md-4 text-center">
+            <a href="contact">Contact</a>
+        </div>
+        <div class="container text-center" style="margin-top: 2rem;">
+            <p>Copyright 2020 Unisuppport</p>
+        </div>
     </div>
-  </footer>
-	<!-- End Footer -->
+</footer>
+<!-- End Footer -->
 
-	<!-- Script Source Files -->
+<!-- Script Source Files -->
 
+<<<<<<< HEAD
 	<!-- jQuery -->
 	<script src="{% static '/js/jquery-3.5.1.min.js' %}"></script>
 	<!-- Bootstrap 4.5 JS -->
@@ -267,7 +269,17 @@
 	<script src="{% static '/js/popper.min.js' %}"></script>
 	<!-- Font Awesome -->
 	<script src="{% static '/js/all.min.js' %}"></script>
+=======
+<!-- jQuery -->
+<script src="{% static '/js/jquery-3.5.1.min.js %}"></script>
+<!-- Bootstrap 4.5 JS -->
+<script src="{% static '/js/bootstrap.min.js' %}"></script>
+<!-- Popper JS -->
+<script src="{% static '/js/popper.min.js' %}"></script>
+<!-- Font Awesome -->
+<script src="{% static '/js/all.min.js' %}"></script>
+>>>>>>> d8c097177856001636ec95c951514d2775bfb4d5
 
-	<!-- End Script Source Files -->
+<!-- End Script Source Files -->
 </body>
 </html>
