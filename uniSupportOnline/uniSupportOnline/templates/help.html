@@ -70,7 +70,7 @@
 
 
         <div id="conversation-list">
-            {% with addition=" active" %}
+            {% with addition as " active" %}
             {% for user in users %}
             <div class="conversation {{addition}}" id="{{ user.name }}" onclick="switchChatMessage('{{ user.name}}');">
                 <img alt="{{ user.1 }}" src="{% static '/images/profiles/kanye.jpg' %}"/>
@@ -84,7 +84,7 @@
                     {{ user.content }}
                 </div>
             </div>
-            { % with addition="" % }
+            { % with addition as "" % }
             {% endfor %}
             {% endwith %}
         </div>
