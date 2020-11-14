@@ -21,7 +21,7 @@ body {
 }
 
 
-.jumbotron{
+#header{
   background-image: url('../Styles/images/help2.jpg');
   background-position: right;
   background-size: contain;
@@ -34,7 +34,6 @@ body {
 
 .navbar{
   height: 4rem;
-
 }
 
 .main{
