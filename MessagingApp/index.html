@@ -6,182 +6,201 @@
     <link rel="stylesheet" type="text/css" media="screen" href="css/chat.css">
 </head>
 <script>
+    function showResult(str) {
+        if (str.length === 0) {
+     //       document.getElementById("conversation-list").style.display = "block";
+            Array.from(document.getElementById("conversation-list").children).forEach(e => e.style.display = "grid");
 
+        } else {
+            Array.from(document.getElementById("conversation-list").children).forEach(e => {
+                console.log(e.id);
+                if (e.id == null) return;
+                if (e.id.toLowerCase().includes(str.toLowerCase())) {
+                    e.style.display = "grid";
+
+                } else {
+                    e.style.display = "none";
+                }
+
+            });
+    //        document.getElementById("conversation-list").style.display = "none";
+        }
+    }
 </script>
 
 <body>
-    <div id="chat-container">
-        <div id="search-container">
-            <input type="text" placeholder="Search" />
-            <!-- Search for the receiver has the user id-->
-        </div>
+<div id="chat-container">
+    <div id="search-container">
+        <input type="text" placeholder="Search" onkeyup="showResult(this.value)"/>
+        <!-- Search for the receiver has the user id-->
+    </div>
 
-        <div id="conversation-list">
-            <div class="conversation active">
-                <img src="images/profiles/kanye.jpg" alt="Stinky Alex" />
-                <div class="title-text">
-                    Stinky Alex
-                </div>
-                <div class="created-date">
-                    Apr 16
-                </div>
-                <div class="conversation-message">
-                    This is a message
-                </div>
+    <div id="conversation-list">
+        <div class="conversation active" id="Stinky Alex">
+            <img src="images/profiles/kanye.jpg" alt="Stinky Alex"/>
+            <div class="title-text">
+                Stinky Alex
             </div>
-
-            <div class="conversation">
-                <img src="images/profiles/kanye.jpg" alt="Stinky Alex" />
-                <div class="title-text">
-                    Another User
-                </div>
-                <div class="created-date">
-                    Apr 16
-                </div>
-                <div class="conversation-message">
-                    This is a message
-                </div>
+            <div class="created-date" id>
+                Apr 16
             </div>
-
-            <div class="conversation">
-                <img src="images/profiles/kanye.jpg" alt="Stinky Alex" />
-                <div class="title-text">
-                    This Isn't Kayne
-                </div>
-                <div class="created-date">
-                    Apr 16
-                </div>
-                <div class="conversation-message">
-                    This is a message
-                </div>
-            </div>
-
-            <div class="conversation">
-                <img src="images/profiles/kanye.jpg" alt="Stinky Alex" />
-                <div class="title-text">
-                    Kayne Not
-                </div>
-                <div class="created-date">
-                    Apr 16
-                </div>
-                <div class="conversation-message">
-                    This is a message
-                </div>
-            </div>
-
-            <div class="conversation">
-                <img src="images/profiles/kanye.jpg" alt="Stinky Alex" />
-                <div class="title-text">
-                    Justin Beiber
-                </div>
-                <div class="created-date">
-                    Apr 16
-                </div>
-                <div class="conversation-message">
-                    This is a message
-                </div>
-            </div>
-
-            <div class="conversation">
-                <img src="images/profiles/kanye.jpg" alt="Stinky Alex" />
-                <div class="title-text">
-                    Shrek All Stars
-                </div>
-                <div class="created-date">
-                    Apr 16
-                </div>
-                <div class="conversation-message">
-                    This is a message
-                </div>
-            </div>
-
-            <div class="conversation">
-                <img src="images/profiles/kanye.jpg" alt="Stinky Alex" />
-                <div class="title-text">
-                    Some Body Once Told Me
-                </div>
-                <div class="created-date">
-                    Apr 16
-                </div>
-                <div class="conversation-message">
-                    This is a message
-                </div>
-            </div>
-
-            <div class="conversation">
-                <img src="images/profiles/kanye.jpg" alt="Stinky Alex" />
-                <div class="title-text">
-                    The world was gonna roll me
-                </div>
-                <div class="created-date">
-                    Apr 16
-                </div>
-                <div class="conversation-message">
-                    This is a message
-                </div>
-            </div>
-
-            <div class="conversation">
-                <img src="images/profiles/kanye.jpg" alt="Stinky Alex" />
-                <div class="title-text">
-                    I aint the sharpest tool in the shed
-                </div>
-                <div class="created-date">
-                    Apr 16
-                </div>
-                <div class="conversation-message">
-                    This is a message
-                </div>
-            </div>
-
-            <div class="conversation">
-                <img src="images/profiles/kanye.jpg" alt="Stinky Alex" />
-                <div class="title-text">
-                    she was looking kinda dumb
-                </div>
-                <div class="created-date">
-                    Apr 16
-                </div>
-                <div class="conversation-message">
-                    This is a message
-                </div>
+            <div class="conversation-message">
+                This is a message
             </div>
         </div>
 
-        <div id="new-message-container">
-            <a href="#">+</a>
-        </div>
-        <div id="chat-title">
-            <span>Stinky Alex</span>
-            <img src="images/icons/trash-logo.svg" alt="Delete Conversation" />
-        </div>
-        <div id="chat-message-list">
-            <div class="message-row you-message">
-                <div class="message-content">
-                    <div class="message-text">Oki doki</div>
-                    <div class="message-time">Apr 16</div>
-                </div>
+        <div class="conversation" id="Another User">
+            <img src="images/profiles/kanye.jpg" alt="Stinky Alex"/>
+            <div class="title-text">
+                Another User
             </div>
-            <div class="message-row other-message">
-                <div class="message-content">
-                    <div class="message-text">
-                        Ndfsdffsdfsdfdsfsfdfsddasasasdasdasdadsdasdsadsdsaadsadsasdasddsa
-                        a
-                        sd
-                        dsa
-                        asd
-                        dwddw
-                        dwdwdw
-                    </div>
-                    <div class="message-time">Nov 30</div>
-                </div>
+            <div class="created-date">
+                Apr 16
+            </div>
+            <div class="conversation-message">
+                This is a message
             </div>
         </div>
-        <div id="chat-form">
-            <img src="">
-            <input type="text" placeholder="Type a message" />
+
+        <div class="conversation" id="This Isn't Kayne">
+            <img src="images/profiles/kanye.jpg" alt="Stinky Alex"/>
+            <div class="title-text">
+                This Isn't Kayne
+            </div>
+            <div class="created-date">
+                Apr 16
+            </div>
+            <div class="conversation-message">
+                This is a message
+            </div>
+        </div>
+
+        <div class="conversation" id="Kayne Not">
+            <img src="images/profiles/kanye.jpg" alt="Stinky Alex"/>
+            <div class="title-text">
+                Kayne Not
+            </div>
+            <div class="created-date">
+                Apr 16
+            </div>
+            <div class="conversation-message">
+                This is a message
+            </div>
+        </div>
+
+        <div class="conversation" id="Justin Beiber">
+            <img src="images/profiles/kanye.jpg" alt="Stinky Alex"/>
+            <div class="title-text">
+                Justin Beiber
+            </div>
+            <div class="created-date">
+                Apr 16
+            </div>
+            <div class="conversation-message">
+                This is a message
+            </div>
+        </div>
+
+        <div class="conversation" id="Shrek All Stars">
+            <img src="images/profiles/kanye.jpg" alt="Stinky Alex"/>
+            <div class="title-text">
+                Shrek All Stars
+            </div>
+            <div class="created-date">
+                Apr 16
+            </div>
+            <div class="conversation-message">
+                This is a message
+            </div>
+        </div>
+
+        <div class="conversation" id="Some Body Once Told Me">
+            <img src="images/profiles/kanye.jpg" alt="Stinky Alex"/>
+            <div class="title-text">
+                Some Body Once Told Me
+            </div>
+            <div class="created-date">
+                Apr 16
+            </div>
+            <div class="conversation-message">
+                This is a message
+            </div>
+        </div>
+
+        <div class="conversation" id="The world was gonna roll me">
+            <img src="images/profiles/kanye.jpg" alt="Stinky Alex"/>
+            <div class="title-text">
+                The world was gonna roll me
+            </div>
+            <div class="created-date">
+                Apr 16
+            </div>
+            <div class="conversation-message">
+                This is a message
+            </div>
+        </div>
+
+        <div class="conversation" id="I aint the sharpest tool in the shed">
+            <img src="images/profiles/kanye.jpg" alt="Stinky Alex"/>
+            <div class="title-text">
+                I aint the sharpest tool in the shed
+            </div>
+            <div class="created-date">
+                Apr 16
+            </div>
+            <div class="conversation-message">
+                This is a message
+            </div>
+        </div>
+
+        <div class="conversation" id="she was looking kinda dumb">
+            <img src="images/profiles/kanye.jpg" alt="Stinky Alex"/>
+            <div class="title-text">
+                she was looking kinda dumb
+            </div>
+            <div class="created-date">
+                Apr 16
+            </div>
+            <div class="conversation-message">
+                This is a message
+            </div>
         </div>
     </div>
+
+    <div id="new-message-container">
+        <a href="#">+</a>
+    </div>
+    <div id="chat-title">
+        <span>Stinky Alex</span>
+        <img src="images/icons/trash-logo.svg" alt="Delete Conversation"/>
+    </div>
+    <div id="chat-message-list">
+        <div class="message-row you-message">
+            <div class="message-content">
+                <div class="message-text">Oki doki</div>
+                <div class="message-time">Apr 16</div>
+            </div>
+        </div>
+        <div class="message-row other-message">
+            <div class="message-content">
+                <div class="message-text">
+                    Ndfsdffsdfsdfdsfsfdfsddasasasdasdasdadsdasdsadsdsaadsadsasdasddsa
+                    a
+                    sd
+                    dsa
+                    asd
+                    dwddw
+                    dwdwdw
+                </div>
+                <div class="message-time">Nov 30</div>
+            </div>
+        </div>
+    </div>
+    <div id="chat-form">
+        <img src="">
+        <input type="text" placeholder="Type a message"/>
+    </div>
+</div>
 </body>
 
 </html>
