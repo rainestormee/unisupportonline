@@ -68,12 +68,14 @@
 
                 <div class="textbox">
                     <i aria-hidden="true" class="fa fa-user"></i>
-                    <input name="username" placeholder="Username" type="text" value="{{ user }}">
+                    <input name="username" placeholder="Username" type="text" value="{{ response.user }}">
                 </div>
 
                 <div class="textbox">
                     <i aria-hidden="true" class="fa fa-lock"></i>
+                    
                     <input name="password" placeholder="Password" type="password" value="{{ pass }}">
+                    
                 </div>
 
                 <input class="button" name="login" type="submit" value="Sign In">
