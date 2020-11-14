@@ -35,9 +35,10 @@ def help(request):
     session=cluster.connect()
 
     session.row_factory = tuple_factory
-
-    row = session.execute("SELECT senderid, senderusername, messagecontent from unisupport.messages WHERE receiverid = 2 ALLOW FILTERING;")
-
+    try:
+        row = session.execute("SELECT senderid, senderusername, messagecontent from unisupport.messages WHERE receiverid = 2 ALLOW FILTERING;")
+    except:
+        row=[]
     contacts=[]
 
     row=reversed(list(row))
