@@ -101,6 +101,7 @@ def loginCode(request):
         response = {"bool": False, "user": "", "message": "You are not logged in."}
 
     else:
+        response.set_cookie("bob", username)
         response = {"bool": True, "user": username, "message": "You are logged in as " + username}
 
     request.session['member_id'] = username
@@ -155,7 +156,7 @@ def signupCode(request):
             userid = row[0][0] + 1
         except:
             userid = 0
-            
+
         row = session.execute("INSERT INTO unisupport.users (userid, accounttype, email, password, username) VALUES (%s, %s, %s, %s, %s);", [userid, 'User', email, password, username])
         response={"bool": True, "user": username, "message": "Succesfully signed up as "+username}
     else:
