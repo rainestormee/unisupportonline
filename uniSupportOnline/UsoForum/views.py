@@ -71,6 +71,9 @@ def help(request):
     otherUser = session.execute(
         "select * from unisupport.messages WHERE receiverid = %s and senderid = 2 ALLOW FILTERING;", [otherPerson])
 
+    displayUser = session.execute("SELECT username FROM users WHERE userid = %s ALLOW FILTERING;," [otherPerson])
+
+
     # sender #receiver #time #message
 
     messages = []
@@ -83,7 +86,7 @@ def help(request):
                          "time": i[1], "message": i[2]})
 
     messages = reversed(sorted(messages, key=lambda x: x['time']))
-    return render(request, 'help.html', {'users': contacts, 'messages': messages})
+    return render(request, 'help.html', {'users': contacts, 'messages': messages, 'displayUser': displayUser})
 
 
 def login(request):
