@@ -1,15 +1,10 @@
 import hashlib
-import os
-
 from cassandra.auth import PlainTextAuthProvider
 from cassandra.cluster import Cluster
 from cassandra.query import tuple_factory
-<<<<<<< HEAD
 import os
 import re
-=======
 from django.shortcuts import render
->>>>>>> 8c483e65a8521e20bd4ad9e7767db6af255427af
 
 cloud_config = {
     'secure_connect_bundle': os.path.join(os.path.realpath(os.path.dirname(__file__)),
