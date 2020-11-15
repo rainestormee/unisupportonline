@@ -11,3 +11,4 @@ out/
 .idea_modules/
 .history/
 *.pyc
+db.sqlite3

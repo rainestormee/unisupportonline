@@ -73,7 +73,7 @@
             {% for user in users %}
                 <div class="conversation {{ addition }}" id="{{ user.name }}"
                      onclick="switchChatMessage('{{ user.name }}', {{ user.id }});">
-                    <img alt="{{ user.1 }}" src="{% static '/images/profiles/kanye.jpg' %}"/>
+                    <img alt="{{ user.name }}" src="{% static '/images/profiles/anon.png' %}"/>
                     <div class="title-text">
                         {{ user.name }}
                     </div>
@@ -132,18 +132,5 @@
     </div>
 </footer>
 <!-- End Footer -->
-
-<!-- Script Source Files -->
-
-<!-- jQuery -->
-<script src="{% static '/js/jquery-3.5.1.min.js' %}"></script>
-<!-- Bootstrap 4.5 JS -->
-<script src="{% static '/js/bootstrap.min.js' %}"></script>
-<!-- Popper JS -->
-<script src="{% static '/js/popper.min.js' %}"></script>
-<!-- Font Awesome -->
-<script src="{% static '/js/all.min.js' %}"></script>
-
-<!-- End Script Source Files -->
 </body>
 </html>
