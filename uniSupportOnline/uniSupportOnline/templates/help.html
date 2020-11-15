@@ -112,6 +112,7 @@
         <div id="chat-form">
             <br>
             <form method="post" action="/sendMessage">
+                {% csrf_token %}
                 <input type="hidden" id="senderId" value="{{ magicid }}">
                 <input type="hidden" id="receiverId" value="{{ displayUser.0.0 }}">
                 <input placeholder="Type a message" type="text" id="message" onkeypress="sendForm(this.value)"/>
