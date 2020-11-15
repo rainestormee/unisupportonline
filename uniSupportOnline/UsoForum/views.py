@@ -84,7 +84,11 @@ def help(request):
 
 def helpCode(request):
     print("hello1")
-    print(request.GET['foo'])
+    try:
+        otherPerson=request.GET['foo']
+        print(otherPerson)
+    except:
+        break
     print("hello2")
     try:
         row = session.execute("SELECT senderid, senderusername, messagecontent, sent_at from unisupport.messages WHERE receiverid = 2 ALLOW FILTERING;")
@@ -104,14 +108,16 @@ def helpCode(request):
             contacts.append(addRow)
         print(user_row)
 
+    otherPersonID=session.execute("SELECT userid FROM users where username = %s ALLOW FILTERING ;",[otherPerson])
+
     loggedInUser = session.execute(
-        "select * from unisupport.messages WHERE receiverid = 2 and senderid = 3 ALLOW FILTERING;")
+        "select * from unisupport.messages WHERE receiverid = 2 and senderid = %s ALLOW FILTERING;",[otherPersonID])
 
     otherUser = session.execute(
-        "select * from unisupport.messages WHERE receiverid = 3 and senderid = 2 ALLOW FILTERING;")
+        "select * from unisupport.messages WHERE receiverid = %s and senderid = 2 ALLOW FILTERING;",[otherPersonID])
 
     # sender #receiver #time #message
-
+    
     messages = []
     for i in loggedInUser:
         messages.append({"sender": i[4], "receiver": i[6],
