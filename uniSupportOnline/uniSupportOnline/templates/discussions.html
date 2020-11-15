@@ -61,5 +61,21 @@
 </nav>
 <!-- End Navigation -->
 
+<div class="table container">
+    <table>
+        {% for message in allMessages %}
+        <tr>
+            <td>{{message.username}}</td>
+            <td>{{message.content}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+
+
+
+
+
 
 </head>

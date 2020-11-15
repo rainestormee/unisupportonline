@@ -86,7 +86,7 @@ def help(request):
                          "time": i[1], "message": i[2]})
 
     messages = reversed(sorted(messages, key=lambda x: x['time']))
-    return render(request, 'help.html', {'users': contacts, 'messages': messages, 'displayUser': displayUser})
+    return render(request, 'help.html', {'users': contacts, 'messages': messages, 'displayUser': displayUser, })
 
 
 def login(request):
@@ -167,4 +167,12 @@ def terms(request):
     return render(request, 'terms.html')
 
 def discussions(request):
-    return render(request, 'discussions.html')
+    allMessages=[]
+
+    getMessages = session.execute("SELECT * FROM unisupport.posts")
+
+    for i in getMessages:
+        allMessages.append({'postid': i[0],'sent_at': i[1].timestamp(),'content': i[2],'userid':i[3],'username':i[4]})
+    allMessages = reversed(sorted(allMessages, key=lambda x:[1]))
+
+    return render(request, 'discussions.html',{'allMessages':allMessages})
