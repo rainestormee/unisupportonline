@@ -180,12 +180,12 @@ def loginCode(request):
     else:
         isLogged=True
 
-    userlogged={'username':username,'bool':isLogged}:
+    userlogged={'username':username,'bool':isLogged}
 
-        userlogged={'username':username,'bool':True}
-        response=render(request, 'home.html',{'userlogged':userlogged})
-        response.set_cookie('username', username)
-        return response
+    userlogged={'username':username,'bool':True}
+    response=render(request, 'home.html',{'userlogged':userlogged})
+    response.set_cookie('username', username)
+    return response
 
 
 
