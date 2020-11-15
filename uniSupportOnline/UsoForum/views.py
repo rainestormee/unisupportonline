@@ -163,7 +163,7 @@ def loginCode(request):
         isLogged=False
     else:
         isLogged=True
-    userlogged={'username':username,'bool':isLogged}
+    
 
     username = request.POST.get('username')
     password = request.POST.get('password')
@@ -176,9 +176,11 @@ def loginCode(request):
     request.session['member_id'] = username
     
     if not row:
+        userlogged={'username':username,'bool':True}
         response=render(request, 'login.html')
 
     else:
+        
         response=render(request, 'home.html')
         response.set_cookie('username', username)
         return response
