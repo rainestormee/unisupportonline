@@ -69,10 +69,10 @@ def help(request):
         print(user_row)
 
     loggedInUser = session.execute(
-        "select * from unisupport.messages WHERE receiverid = 2 and senderid = %s ALLOW FILTERING;",otherPerson)
+        "select * from unisupport.messages WHERE receiverid = 2 and senderid = %s ALLOW FILTERING;",[otherPerson])
 
     otherUser = session.execute(
-        "select * from unisupport.messages WHERE receiverid = %s and senderid = 2 ALLOW FILTERING;",otherPerson)
+        "select * from unisupport.messages WHERE receiverid = %s and senderid = 2 ALLOW FILTERING;",[otherPerson])
 
     # sender #receiver #time #message
 
