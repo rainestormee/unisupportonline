@@ -102,13 +102,14 @@ def loginCode(request):
     row = session.execute(
         "SELECT username, password FROM unisupport.users where username = %s AND password = %s ALLOW FILTERING;",
         [username, password])
-    if not row:
-        response = {"bool": False, "user": "", "message": "You are not logged in."}
-
-    else:
-        response.set_cookie('username', username)
-        return response
+    
     request.session['member_id'] = username
+
+
+    response=render(request, 'login.html')
+    response.set_cookie('username', username)
+    return response
+
 
     return render(request, 'login.html', {'response': response})
 
