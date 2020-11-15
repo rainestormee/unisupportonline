@@ -34,7 +34,12 @@ def about(request):
 
 def contact(request):
     return render(request, 'contact.html')
-
+"""
+def SetCookie(request):
+    response = HttpResponse('Visiting for the first time')
+    response.set_cookie('bookname','Sherlock Holmes')
+    return response
+"""
 
 def help(request):
     try:
@@ -101,9 +106,8 @@ def loginCode(request):
         response = {"bool": False, "user": "", "message": "You are not logged in."}
 
     else:
-        response.set_cookie('username', datetime.datetime.now())
-        response = {"bool": True, "user": username, "message": "You are logged in as " + username}
-
+        response.set_cookie('username', username)
+        return response
     request.session['member_id'] = username
 
     return render(request, 'login.html', {'response': response})
