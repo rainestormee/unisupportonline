@@ -71,6 +71,7 @@
 .conversation.active,
 .conversation:hover {
     background: #002C88;
+    cursor: pointer;
 }
 
 .conversation.conversation:hover{
