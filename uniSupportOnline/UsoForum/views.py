@@ -2,8 +2,8 @@ import hashlib
 from cassandra.auth import PlainTextAuthProvider
 from cassandra.cluster import Cluster
 from cassandra.query import tuple_factory
-import os
 import re
+import os
 from django.shortcuts import render
 
 cloud_config = {
@@ -101,6 +101,8 @@ def loginCode(request):
     else:
         response = {"bool": True, "user": username, "message": "You are logged in as " + username}
 
+    request.session['member_id'] = username
+
     return render(request, 'login.html', {'response': response})
 
     # DO LOGIN STUFF HERE OR PARSE VALUES WHERE YOU WANT
@@ -112,6 +114,9 @@ def search(request):
 
 def signup(request):
     return render(request, 'signup.html')
+
+
+
 
 def validateEmail(email):
     regex = r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)"
