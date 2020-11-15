@@ -36,10 +36,6 @@ def contact(request):
     return render(request, 'contact.html')
 
 
-def dashboard(request):
-    return render(request, 'dashboard.html')
-
-
 def help(request):
     try:
         otherPerson = request.GET['foo']
