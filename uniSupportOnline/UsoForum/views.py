@@ -36,10 +36,6 @@ def contact(request):
     return render(request, 'contact.html')
 
 
-def dashboard(request):
-    return render(request, 'dashboard.html')
-
-
 def help(request):
     try:
         otherPerson = request.GET['foo']
@@ -155,8 +151,12 @@ def signupCode(request):
         password = validatePassword(password)
         password=hashlib.sha512(password).hexdigest()
         row = session.execute('SELECT MAX(userid) AS max FROM unisupport.users')
-        userid = row[0][0] + 1
-        row = session.execute("INSERT INTO unisupport.users (userid, accounttype, email, password, username) VALUES (%s, %s, %s, %s, %s);",[userid, 'User', email, password, username])
+        if(row is not None):    
+            userid = row[0][0] + 1
+        else:
+            userid = 0
+
+        row = session.execute("INSERT INTO unisupport.users (userid, accounttype, email, password, username) VALUES (%s, %s, %s, %s, %s);", [userid, 'User', email, password, username])
         response={"bool": True, "user": username, "message": "Succesfully signed up as "+username}
     else:
         response = {"bool": False, "user": "", "message": "Unsuccesfully signed up."}

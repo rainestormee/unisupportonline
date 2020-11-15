@@ -99,7 +99,12 @@
         </div>
         <div id="chat-form">
             <br>
-            <input placeholder="Type a message" type="text" onkeypress="sendForm(this.value)"/>
+            <form method="post" action="/sendMessage">
+                <input type="hidden" id="senderid" value="2">
+                <input type="hidden" id="receiverId" value="{{ displayUser.0.0 }}">
+                <input placeholder="Type a message" type="text" id="message" onkeypress="sendForm(this.value)"/>
+                <input type="submit" value="" id="form_submit" style="display: none;">
+            </form>
         </div>
     </div>
 </section>
