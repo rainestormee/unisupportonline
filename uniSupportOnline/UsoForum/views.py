@@ -79,14 +79,11 @@ def SetCookie(request):
 def help(request):
     try:
         username = request.COOKIES['username']
-        row = session.execute("SELECT userid FROM unisupport.users WHERE username = %s;", username)
+        row = session.execute("SELECT userid FROM unisupport.users WHERE username = %s ALLOW FILTERING;", [username])
     except:
         username = ""
 
-<<<<<<< HEAD
-=======
-    row = session.execute("SELECT userid FROM unisupport.users WHERE username = %s ALLOW FILTERING;", username)
->>>>>>> a8f0746ce7dff061cdd4a476938a73b5d065b77a
+    #row = session.execute("SELECT userid FROM unisupport.users WHERE username = %s ALLOW FILTERING;", [username])
 
     try:
         usernameId = row[0][0]
@@ -167,18 +164,6 @@ def login(request):
     userlogged = {'username': username, 'bool': isLogged}
 
     return render(request, 'login.html')
-
-
-def loginCode(request):
-    try:
-        username = request.COOKIES['username']
-
-    except:
-        username = ""
-    if len(username) < 1:
-        isLogged = False
-    else:
-        isLogged = True
 
 def loginCode(request):
     try:
