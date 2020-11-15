@@ -176,7 +176,7 @@ def loginCode(request):
     request.session['member_id'] = username
     
     if not row:
-        pass
+        response=render(request, 'login.html')
 
     else:
         response=render(request, 'home.html')
