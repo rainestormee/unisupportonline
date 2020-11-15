@@ -26,7 +26,7 @@
 <div class="top-bar bg-dark sticky-top">
     <div class="container">
       <div class="col-12 text-right">
-        <p><a href="tel:+1234">Emergency line:  +123 456 789</a></p>
+        <p><a href="tel:+1234">Emergency line:  111</a></p>
       </div>
 
     </div>
@@ -45,16 +45,20 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav vw-80" style='padding-left: 2rem;'>
-          <li class="nav-item"><a class="nav-link" href="../">Home</a></li>
-          <li class="nav-item"><a class="nav-link" href="../discussions">Discussions</a></li>
-          <li class="nav-item"><a class="nav-link" href="../help">Help center</a></li>
-          <li class="nav-item"><a class="nav-link" href="../search">Search</a></li>
-          <li class="nav-item dropdown">
+          <li class="nav-item bg-dark"><a class="nav-link" href="../">Home</a></li>
+          <li class="nav-item bg-dark"><a class="nav-link" href="../discussions">Discussions</a></li>
+          <li class="nav-item bg-dark"><a class="nav-link" href="../help">Help center</a></li>
+          <li class="nav-item bg-dark"><a class="nav-link" href="../search">Search</a></li>
+          <li class="nav-item dropdown bg-dark">
             <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
             <div class="dropdown-menu">
-              <a class="dropdown-item" id="notloggedin" href="#">Login</a>
-              <a class="dropdown-item" id="loggedin" href="#">{{bob}}</a>  <!-- <- TODO: this thing  -->
-              <a class="dropdown-item" id="loggedin2" href="#">Log out</a>
+                {% if not userlogged.bool %}
+                <a class="dropdown-item" id="notloggedin" href="../login">Log in</a>
+                {% endif %}
+                <a class="dropdown-item" id="loggedin"></a>  <!-- <- TODO: this thing  -->
+                {% if userlogged.bool %}
+                <a class="dropdown-item" id="loggedin2" href="../logout">Log out</a>
+                {% endif %}
             </div>
         </li>
         </ul>
@@ -97,7 +101,7 @@
         </div>
         <div id="chat-message-list">
             {% for message in messages %}
-                <div class="message-row {% if message.receiver == 'raine' %}you-message{% else %}other-message{% endif %}">
+                <div class="message-row {% if message.receiver == userlogged.username %}you-message{% else %}other-message{% endif %}">
                     <div class="message-content">
                         <div class="message-text">{{ message.message }}</div>
                         <div class="message-time">{{ message.time }}</div>
@@ -108,7 +112,7 @@
         <div id="chat-form">
             <br>
             <form method="post" action="/sendMessage">
-                <input type="hidden" id="senderid" value="2">
+                <input type="hidden" id="senderid" value="{{ userlogged.id }}">
                 <input type="hidden" id="receiverId" value="{{ displayUser.0.0 }}">
                 <input placeholder="Type a message" type="text" id="message" onkeypress="sendForm(this.value)"/>
                 <input type="submit" value="" id="form_submit" style="display: none;">
