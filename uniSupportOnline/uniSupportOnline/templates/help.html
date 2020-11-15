@@ -87,12 +87,12 @@
                 </div>
 
             {% endfor %}
-        </div>messages
+        </div>
         <div id="new-message-container">
             <a href="#">+</a>
         </div>
         <div id="chat-title">
-            <span>{{ displayUser }}</span>
+            <span>{{ displayUser.0.0 }}</span>
         </div>
         <div id="chat-message-list">
             {% for message in messages %}
