@@ -93,6 +93,7 @@ def helpCode(request):
     print("hello2")
     try:
         row = session.execute("SELECT senderid, senderusername, messagecontent, sent_at from unisupport.messages WHERE receiverid = 2 ALLOW FILTERING;")
+        row = reversed(sorted(row, key=lambda x: x[3]))
     except BaseException:
         row = []
     contacts = []
