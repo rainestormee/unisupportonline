@@ -86,11 +86,7 @@ def help(request):
                          "time": i[1], "message": i[2]})
 
     messages = reversed(sorted(messages, key=lambda x: x['time']))
-    return render(request,'help.html', {'users': contacts, 'messages': messages})
-
-
-
-
+    return render(request, 'help.html', {'users': contacts, 'messages': messages})
 
 
 def login(request):

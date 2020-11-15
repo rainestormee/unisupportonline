@@ -34,7 +34,7 @@ function switchChatMessage(name) {
             e.classList.remove("active")
         }
     });
-    window.location.href = "http://unisupport.online/help?foo=" + name;
+    window.location.assign("/help?foo=" + name,true);
 }
 
 function getConversations() {
