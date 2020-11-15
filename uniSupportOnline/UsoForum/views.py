@@ -1,7 +1,5 @@
 from django.shortcuts import render
-
-
-
+import hashlib
 from cassandra.cluster import Cluster
 from cassandra.auth import PlainTextAuthProvider
 from cassandra.query import tuple_factory
@@ -65,10 +63,9 @@ def login(request):
     return render(request, 'login.html')
 
 def loginCode(request):
-    
     username=request.POST.get('username')
     password=request.POST.get('password')
-    print(username, password)
+    password=hashlib.sha512(password.encode()).hexdigest()
 
     row = session.execute("SELECT username, password FROM unisupport.users where username = %s AND password = %s ALLOW FILTERING;",[username, password])
     if not row:
