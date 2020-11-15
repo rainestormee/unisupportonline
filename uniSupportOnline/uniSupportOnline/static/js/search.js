@@ -23,7 +23,27 @@ function showResult(str) {
 
 window.onload = function() {
     this.getConversations()[0].classList.add("active");
-//    window.location.assign("/help?foo=")
+    const urlParams = new URLSearchParams(window.location.search);
+    let found = false;
+    let foo = 2;
+    urlParams.forEach((k, v) => {
+        console.log(k, v);
+        if (v === 'foo') {
+            found = true;
+            foo = k;
+        }
+    })
+    if (!found) {
+        return;
+    }
+
+    this.getConversations().forEach(c => {
+        if (c.id === foo) {
+            c.classList.add("active");
+        } else {
+            c.classList.remove("active");
+        }
+    });
 }
 
 function switchChatMessage(name, id) {

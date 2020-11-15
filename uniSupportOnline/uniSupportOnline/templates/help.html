@@ -72,7 +72,7 @@
 
         <div id="conversation-list">
             {% for user in users %}
-                <div class="conversation {{ addition }}" id="{{ user.name }}"
+                <div class="conversation" id="{{ user.id }}"
                      onclick="switchChatMessage('{{ user.name }}', {{ user.id }});">
                     <img alt="{{ user.name }}" src="{% static '/images/profiles/anon.png' %}"/>
                     <div class="title-text">
@@ -87,16 +87,15 @@
                 </div>
 
             {% endfor %}
-        </div>
+        </div>messages
         <div id="new-message-container">
             <a href="#">+</a>
         </div>
         <div id="chat-title">
-            <span>{{ users.0.name }}</span>
+            <span>{{ displayUser }}</span>
         </div>
         <div id="chat-message-list">
             {% for message in messages %}
-                <script>console.log('{{ message.receiver }}');</script>
                 <div class="message-row {% if message.receiver == 'raine' %}you-message{% else %}other-message{% endif %}">
                     <div class="message-content">
                         <div class="message-text">{{ message.message }}</div>
