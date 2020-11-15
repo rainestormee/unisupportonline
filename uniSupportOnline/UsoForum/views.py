@@ -86,6 +86,7 @@ def helpCode(request):
     print("hello1")
     try:
         otherPerson=request.GET['foo']
+        otherPerson=int(otherPerson)
         print(otherPerson)
     except:
         return None;
