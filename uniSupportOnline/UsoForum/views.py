@@ -55,9 +55,31 @@ def help(request):
         if inContacts==False:
             contacts.append(addRow)
         print(user_row)
+
+    import datetime
+
+    loggedInUser = session.execute("select * from unisupport.messages WHERE receiverid = 2 and senderid = 3 ALLOW FILTERING;")
+
+    otherUser = session.execute("select * from unisupport.messages WHERE receiverid = 3 and senderid = 2 ALLOW FILTERING;")
+
+    #sender #receiver #time #message
+
+    messages=[]
+    for i in loggedInUser:
+        messages.append({"sender": i[4],"receiver":i[6],
+                        "time":i[1].timestamp(),"message":i[2]})
+
+
+    for i in otherUser:
+        messages.append({"sender": i[4],"receiver":i[6],
+                        "time":i[1].timestamp(),"message":i[2]})
+
+    messages=sorted(messages, key=lambda x: x['time'])
+
+
     print(contacts)
     #print("dingdong")
-    return render(request, 'help.html', {'users':contacts})
+    return render(request, 'help.html', {'users':contacts, 'messages':messages})
 
 
 def login(request):
