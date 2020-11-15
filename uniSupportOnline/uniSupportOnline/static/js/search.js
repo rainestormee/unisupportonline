@@ -34,11 +34,7 @@ function switchChatMessage(name) {
             e.classList.remove("active")
         }
     });
-    $.get('http://unisupport.online/helpCode/', [{"foo": "fuck you alex"}], function (response) {
-        if (response.success) {
-
-        }
-    })
+    window.location.href = "http://unisupport.online/help?foo=" + name;
 }
 
 function getConversations() {
