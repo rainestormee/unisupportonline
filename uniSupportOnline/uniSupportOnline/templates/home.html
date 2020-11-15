@@ -6,7 +6,7 @@
     <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport">
     <meta content="ie=edge" http-equiv="X-UA-Compatible">
     <title>Unisupport</title>
-    <link href="{% static '/images/logo.png' %}" rel="shortcut icon">
+    <link href="{% static '/images/bigbrain.jpg' %}" rel="shortcut icon">
     <!-- Bootstrap 4.5 CSS -->
     <link href="{% static '/styles/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static '/styles/bootstrap.css' %}" rel="stylesheet">
@@ -14,126 +14,148 @@
           integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" rel="stylesheet">
     <!-- Style CSS -->
     <link href="{% static '/styles/template.css' %}" rel="stylesheet">
+    <link href="{% static '/styles/main.css' %}"rel="stylesheet">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body style="background-color: black;">
 
 <!-- Top Bar -->
-<div class="top-bar sticky-top">
+<div class="top-bar bg-dark sticky-top">
     <div class="container">
-        <div class="col-12 text-right">
-            <p><a href="tel:+1234">Emergency line: +123 456 789</a></p>
-        </div>
+      <div class="col-12 text-right">
+        <p><a href="tel:+1234">Emergency line:  +123 456 789</a></p>
+      </div>
 
     </div>
-</div>
+  </div>
 <!-- End Top Bar -->
 
 
 <!-- Navigation -->
-<div class="jumbotron" id="header">
-    <h1>Unisupport</h1>
-    <p>Your safe space</p>
-</div>
-<nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
-    <button class="navbar-toggler" data-target="collapse_target" data-toggle="collapse">
-        <span class="navbar-togler-icon"></span>
+<div id="parallax-image">
+    <div class="row h-100">
+      <div class="col-md-12 align-self-center">
+        <h1 class="text-center text-white">Unisupport</h1>
+      </div>
+    </div>
+  </div>
+
+<nav class="navbar navbar-dark bg-dark sticky-top navbar-expand-lg">
+    <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarResponsive" name="button">
+      <span class="navbar-toggler-icon"></span>
     </button>
-
-
-    <!-- <a class="navbar-brand" href="index"><img src="{% static '/images/logo.png' %}" alt=""></a> -->
-
-      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+    <div class="collapse navbar-collapse" id="navbarResponsive">
+      <ul class="navbar-nav bg-dark vw-80" style='padding-left: 2rem;'>
         <li class="nav-item"><a class="nav-link" href="../">Home</a></li>
         <li class="nav-item"><a class="nav-link" href="../dashboard">Dashboard</a></li>
         <li class="nav-item"><a class="nav-link" href="../help">Help center</a></li>
         <li class="nav-item"><a class="nav-link" href="../search">Search</a></li>
       </ul>
 
-    <div class="container col-md-4" style="margin-right: -13rem">
-        Logged in as: user
-    </div>
-
 </nav>
 <!-- End Navigation -->
 
 
 <!-- Start Main -->
-<section class='main'>
-
-    <div class="container">
-        <hr>
-        <div class="row" style="margin-top: 5rem; margin-bottom: 5rem;">
-            <div class="col">
-                <h1 class="display-4">Express yourself</h1>
-                <p class="lead" style="width: 50rem;">Don't be afraid to tell us how you feel. We're all in this
-                    together. Plus, maybe someone can help. Can't know untill you try.</p>
-            </div>
-            <div class="col">
-                <p class="lead">
-                    <img alt="" src="{% static '/images/head-love.jpg' %}" style="width:10rem; float: right">
-                </p>
-            </div>
-        </div>
-
-        <hr>
-
-        <div class="row" style="margin-top: 5rem; margin-bottom: 5rem;">
-            <div class="col">
-                <p class="lead">
-                    <img alt="" src="{% static '/images/anonymous.png' %}" style="width:10rem; float: left">
-                </p>
-            </div>
-            <div class="col">
-                <h1 class="display-4">Fearless</h1>
-                <p class="lead" style="width: 50rem;">Enjoy complete anonimity. You only need an account for security
-                    reasons, but that's it. No one knows who you really are untill you are ready to show it.</p>
-            </div>
-        </div>
-
-        <hr>
-
-        <div class="row" style="margin-top: 5rem; margin-bottom: 5rem;">
-            <div class="col">
-                <h1 class="display-4">Stay connected</h1>
-                <p class="lead" style="width: 50rem;">Why should you feel alone? Join a chat room, see what others have
-                    in mind, give or receive support, tell stories, do whatever. Just remember: this is a safe space for
-                    everyone, so let's keep it that way.</p>
-            </div>
-            <div class="col">
-                <p class="lead">
-                    <img alt="" src="{% static '/images/chat.png' &}" style="width:10rem; float: right">
-                </p>
-            </div>
-        </div>
-
-        <hr>
-
-        <div class="row" style="margin-top: 5rem; margin-bottom: 5rem;">
-            <div class="col">
-                <p class="lead">
-                    <img alt="" src="{% static '/images/professional.png' %}" style="width:10rem; float: left">
-                </p>
-            </div>
-            <div class="col">
-                <h1 class="display-4">Go professional</h1>
-                <p class="lead" style="width: 50rem;">You can always get a professional to listen to you and give you
-                    some ideas. Just hop on the dm. There is always someone who can listen and help.</p>
-            </div>
-            <hr>
-        </div>
-    </div>
-
+<section class="main" style="background-color: white; width: 100vw; margin:0; padding:2vw" >
+	<div class="col-md-12 align-self-center" style="margin-top:5vw; height: 10vw">
+		<h1 class="text-center text-black">Welcome</h1>
+	</div>
+	<p style="font-size: 2vw">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+		sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+		Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+	  nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+		reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+		pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
+		qui officia deserunt mollit anim id est laborum.</p>
+		<p style="font-size: 2vw">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+ 		sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+ 		Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+ 		nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+ 		reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+ 		pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
+ 		qui officia deserunt mollit anim id est laborum.</p>
+		<p style="font-size: 2vw">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
+		sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+		Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
+		nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+		reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
+		pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
+		qui officia deserunt mollit anim id est laborum.</p>
 </section>
 
+<div id="parallax-image2">
+	<div class="row h-100">
+		<div class="col-md-12 align-self-center">
+		</div></div>
+
+
+<section class="rows" style="background-color: white; width: 100vw; margin:0; padding:2vw" >
+		<hr>
+		<div class="row" style="margin-top: 5rem; margin-bottom: 5rem;" >
+			<div class="col" >
+				<h1 class="display-4">Express yourself</h1>
+				<p class="lead">Don't be afraid to tell us how you feel. We're all in this together. Plus, maybe someone can help. Can't know untill you try.</p>
+			</div>
+			<div class="col">
+				<p class="lead">
+					<img src="{% static '/images/head-love.jpg' %}" alt="" style="width:10rem; float: right">
+				</p>
+			</div>
+		</div>
+
+		<hr>
+
+		<div class="row" style="margin-top: 5rem; margin-bottom: 5rem;" >
+			<div class="col md-auto">
+				<p class="lead">
+					<img src="{% static '/images/anonymous.png' %}" alt="" style="width:10rem; float: left">
+				</p>
+			</div>
+			<div class="col" >
+				<h1 class="display-4">Fearless</h1>
+				<p class="lead">Enjoy complete anonimity. You only need an account for security reasons, but that's it. No one knows who you really are untill you are ready to show it.</p>
+			</div>
+		</div>
+
+		<hr>
+
+		<div class="row" style="margin-top: 5rem; margin-bottom: 5rem;" >
+			<div class="col" >
+				<h1 class="display-4">Stay connected</h1>
+				<p class="lead">Why should you feel alone? Join a chat room, see what others have in mind, give or receive support, tell stories, do whatever. Just remember: this is a safe space for everyone, so let's keep it that way.</p>
+			</div>
+			<div class="col">
+				<p class="lead">
+					<img src="{% static '/images/chat.png' %}" alt="" style="width:10rem; float: right">
+				</p>
+			</div>
+		</div>
+
+		<hr>
+
+		<div class="row" style="margin-top: 5rem; margin-bottom: 5rem;" >
+			<div class="col">
+				<p class="lead">
+					<img src="{% static '/images/professional.png' %}" alt="" style="width:10rem; float: left">
+				</p>
+			</div>
+			<div class="col" >
+				<h1 class="display-4">Go professional</h1>
+				<p class="lead">You can always get a professional to listen to you and give you some ideas. Just hop on the dm. There is always someone who can listen and help.</p>
+			</div>
+			<hr>
+		</div>
+
+</section>
 
 <!-- End Main -->
 
 <!-- Start Footer -->
 <footer>
     <div class="container text-center" style="margin-bottom: 3rem ">
-        <img src="{% static '/images/logo.png' %}" style="width:30rem;">
+        <img src="{% static '/images/logo.png' %}" style="width:30vw;">
     </div>
     <div class="row">
         <div class="col-md-4 text-center">
@@ -146,7 +168,7 @@
             <a href="../contact">Contact</a>
         </div>
         <div class="container text-center" style="margin-top: 2rem;">
-            <p>Copyright 2020 Unisuppport</p>
+            <p>Copyright 2020 Unisupport</p>
         </div>
     </div>
 </footer>
