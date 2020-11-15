@@ -132,7 +132,7 @@ def help(request):
                          "time": i[1], "message": i[2]})
 
     messages = reversed(sorted(messages, key=lambda x: x['time']))
-    return render(request, 'help.html', {'users': contacts, 'messages': messages, 'displayUser': displayUser, })
+    return render(request, 'help.html', {'users': contacts, 'messages': messages, 'displayUser': displayUser, 'userlogged': userlogged })
 
 
 def login(request):
@@ -266,7 +266,7 @@ def signupCode(request):
     else:
         isLogged=True
     userlogged={'username':username,'bool':isLogged}
-    
+
     username=request.POST.get('username')
     password=request.POST.get('password')
     email=request.POST.get('email')
