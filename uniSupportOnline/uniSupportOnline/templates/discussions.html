@@ -83,8 +83,9 @@
 					<tbody>
 						{% for message in allMessages %}
 		        <tr>
-		            <td><h3 class="h5 mb-0">{{message.username}}</h3></td>
-		            <td><h5 class="mb-0">{{message.content}}</h5></td>
+		            <td><h3 class="h5 mb-0">{{message.username}} {{message.time}}</h3></td>
+                    <td><h5 class="mb-0">{{message.content}}</h5></td>
+                    <td></td>
 		        </tr>
 		        {% endfor %}
 					</tbody>

@@ -1,7 +1,7 @@
 import hashlib
 import os
 import re
-
+import time
 from cassandra.auth import PlainTextAuthProvider
 from cassandra.cluster import Cluster
 from cassandra.query import tuple_factory
@@ -33,8 +33,11 @@ def home(request):
         username = ""
     if len(username) < 1:
         isLogged = False
+        userlogged = {'username': '', 'bool': False}
+        return render(request, 'home.html', {'userlogged': userlogged})
     else:
         isLogged = True
+
     userlogged = {'username': username, 'bool': isLogged}
 
     return render(request, 'home.html', {'userlogged': userlogged})
@@ -346,9 +349,10 @@ def discussions(request):
 
     for i in getMessages:
         allMessages.append(
-            {'postid': i[0], 'sent_at': i[1].timestamp(), 'content': i[2], 'userid': i[3], 'username': i[4]})
-    allMessages = reversed(sorted(allMessages, key=lambda x: [1]))
+            {'postid': i[0], 'sent_at': i[1].timestamp(), 'content': i[2], 'userid': i[3], 'username': i[4], 'time':time.strftime("%d %b %H:%M:%S",time.localtime(i[3]))})
 
+    allMessages = reversed(sorted(allMessages, key=lambda x: [1]))
+    
     return render(request, 'discussions.html', {'allMessages': allMessages, 'userlogged': userlogged})
 
 
