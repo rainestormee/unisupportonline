@@ -151,11 +151,11 @@ def signupCode(request):
         password = validatePassword(password)
         password=hashlib.sha512(password).hexdigest()
         row = session.execute('SELECT MAX(userid) AS max FROM unisupport.users')
-        if(row is not None):    
+        try:
             userid = row[0][0] + 1
-        else:
+        except:
             userid = 0
-
+            
         row = session.execute("INSERT INTO unisupport.users (userid, accounttype, email, password, username) VALUES (%s, %s, %s, %s, %s);", [userid, 'User', email, password, username])
         response={"bool": True, "user": username, "message": "Succesfully signed up as "+username}
     else:
