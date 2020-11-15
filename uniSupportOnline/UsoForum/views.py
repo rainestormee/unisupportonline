@@ -42,6 +42,9 @@ def SetCookie(request):
 """
 
 def help(request):
+
+
+
     try:
         otherPerson = request.GET['foo']
         otherPerson = int(otherPerson)
@@ -104,11 +107,14 @@ def loginCode(request):
         [username, password])
     
     request.session['member_id'] = username
+    
+    if not row:
+        pass
 
-
-    response=render(request, 'login.html')
-    response.set_cookie('username', username)
-    return response
+    else:
+        response=render(request, 'login.html')
+        response.set_cookie('username', username)
+        return response
 
 
     return render(request, 'login.html', {'response': response})
@@ -173,6 +179,18 @@ def terms(request):
     return render(request, 'terms.html')
 
 def discussions(request):
+
+    try:
+        username=request.COOKIES['username']
+        
+    except:
+        username=""
+    if len(username)<1:
+        isLogged=False
+    else:
+        isLogged=True
+    userlogged={'username':username,'bool':isLogged}
+
     allMessages=[]
 
     getMessages = session.execute("SELECT * FROM unisupport.posts")
@@ -181,4 +199,4 @@ def discussions(request):
         allMessages.append({'postid': i[0],'sent_at': i[1].timestamp(),'content': i[2],'userid':i[3],'username':i[4]})
     allMessages = reversed(sorted(allMessages, key=lambda x:[1]))
 
-    return render(request, 'discussions.html',{'allMessages':allMessages})
+    return render(request, 'discussions.html',{'allMessages':allMessages, 'userlogged':userlogged})
