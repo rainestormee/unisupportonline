@@ -80,6 +80,7 @@ def help(request):
         username=""
     if len(username)<1:
         isLogged=False
+        userlogged={'username':'','bool':False}
         return render(request, 'home.html' {'users': contacts, 'messages': messages, 'displayUser': displayUser, 'userlogged': userlogged})
 
     else:
