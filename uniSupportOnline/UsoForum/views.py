@@ -83,6 +83,10 @@ def help(request):
     except:
         username = ""
 
+<<<<<<< HEAD
+=======
+    row = session.execute("SELECT userid FROM unisupport.users WHERE username = %s ALLOW FILTERING;", username)
+>>>>>>> a8f0746ce7dff061cdd4a476938a73b5d065b77a
 
     try:
         usernameId = row[0][0]
@@ -267,10 +271,7 @@ def signup(request):
 
 def validateEmail(email):
     regex = r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)"
-    if not re.match(regex, email):
-        return False
-    else:
-        return True
+    return not re.match(regex, email)
 
 
 def validateUsername(username):
@@ -279,10 +280,7 @@ def validateUsername(username):
     except:
         return False
     row = session.execute("SELECT username FROM unisupport.users where username = %s ALLOW FILTERING;", [username])
-    if not row:
-        return True
-    else:
-        return False
+    return not row
 
 
 def validatePassword(password):
@@ -367,3 +365,30 @@ def discussions(request):
     allMessages = reversed(sorted(allMessages, key=lambda x: [1]))
 
     return render(request, 'discussions.html', {'allMessages': allMessages, 'userlogged': userlogged})
+
+
+def sendMessage(request):
+    senderId = request.POST.get('senderId')
+    receiverId = request.POST.get('receiverId')
+    message = request.POST.get('message')
+    row = session.execute('select MAX(messageid) as max FROM unisupport.messages')
+    try:
+        idd = row[0][0] + 1
+    except:
+        idd = 0
+    row = session.execute('select username from unisupport.users where userid = %s ALLOW FILTERING;', senderId)
+    try:
+        sendername = row[0][0]
+    except:
+        sendername = "Wrong"
+
+    row = session.execute('select username from unisupport.users where userid = %s ALLOW FILTERING;', receiverId)
+    try:
+        receivername = row[0][0]
+    except:
+        receivername = "Wrong"
+
+    row = session.execute("insert into unisupport.messages (messageid, sent_at, messagecontent, receiverid, "
+                          "receiverusername, senderid, senderusername) VALUES (%s, toTimestamp(now()),%s, %s, %s, %s,"
+                          " %s)",
+                          idd, message, receiverId, receivername, senderId, sendername)
