@@ -2,10 +2,11 @@ import hashlib
 import os
 import re
 import time
+
 from cassandra.auth import PlainTextAuthProvider
 from cassandra.cluster import Cluster
 from cassandra.query import tuple_factory
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 
 cloud_config = {
     'secure_connect_bundle': os.path.join(os.path.realpath(os.path.dirname(__file__)),
@@ -82,18 +83,20 @@ def SetCookie(request):
 def help(request):
     try:
         username = request.COOKIES['username']
+        print("get username")
         row = session.execute("SELECT userid FROM unisupport.users WHERE username = %s ALLOW FILTERING;", [username])
+        print("get row1")
     except:
         username = ""
+        row = [['0']]
 
-    #row = session.execute("SELECT userid FROM unisupport.users WHERE username = %s ALLOW FILTERING;", [username])
+    # row = session.execute("SELECT userid FROM unisupport.users WHERE username = %s ALLOW FILTERING;", [username])
 
     try:
         usernameId = row[0][0]
     except BaseException:
         print('unexpected null value')
         usernameId = 0
-
 
     if len(username) < 1:
         isLogged = False
@@ -107,11 +110,17 @@ def help(request):
     try:
         otherPerson = request.GET['foo']
         otherPerson = int(otherPerson)
-    except BaseException:
-        otherPerson = 3
+        print("working")
+    except:
+        print("not working")
+        
+        rowreal=session.execute("SELECT senderid, senderusername, messagecontent, sent_at from unisupport.messages WHERE receiverid = %s ALLOW FILTERING;",[usernameId])
+
+        print(rowreal[0][0])
+        otherPerson = rowreal[0][0]
     try:
         row = session.execute(
-            "SELECT senderid, senderusername, messagecontent, sent_at from unisupport.messages WHERE receiverid = %s ALLOW FILTERING;", usernameId)
+            "SELECT senderid, senderusername, messagecontent, sent_at from unisupport.messages WHERE receiverid = %s ALLOW FILTERING;",[usernameId])
         row = sorted(row, key=lambda x: x[3])
     except BaseException:
         row = []
@@ -127,13 +136,15 @@ def help(request):
                 inContacts = True
         if not inContacts:
             contacts.append(addRow)
-        print(user_row)
+        #print(user_row)
 
     loggedInUser = session.execute(
-        "select * from unisupport.messages WHERE receiverid = 2 and senderid = %s ALLOW FILTERING;", [otherPerson])
+        "select * from unisupport.messages WHERE receiverid = %s and senderid = %s ALLOW FILTERING;",
+        [usernameId, otherPerson])
 
     otherUser = session.execute(
-        "select * from unisupport.messages WHERE receiverid = %s and senderid = 2 ALLOW FILTERING;", [otherPerson])
+        "select * from unisupport.messages WHERE receiverid = %s and senderid = %s ALLOW FILTERING;",
+        [otherPerson, usernameId])
 
     displayUser = session.execute("SELECT username FROM unisupport.users WHERE userid = %s ALLOW FILTERING;",
                                   [otherPerson])
@@ -144,14 +155,18 @@ def help(request):
     for i in loggedInUser:
         messages.append({"sender": i[4], "receiver": i[6],
                          "time": i[1], "message": i[2]})
-
+    #print(len(messages))
     for i in otherUser:
         messages.append({"sender": i[4], "receiver": i[6],
                          "time": i[1], "message": i[2]})
-
+    #print(len(messages))
     messages = reversed(sorted(messages, key=lambda x: x['time']))
+    #print(len(messages))
+    print(usernameId)
+    print(otherPerson)
     return render(request, 'help.html',
-                  {'users': contacts, 'messages': messages, 'displayUser': displayUser, 'userlogged': userlogged, 'magicid':usernameId})
+                  {'users': contacts, 'messages': messages, 'displayUser': displayUser, 'userlogged': userlogged,
+                   'magicid': usernameId})
 
 
 def login(request):
@@ -168,17 +183,18 @@ def login(request):
 
     return render(request, 'login.html')
 
+
 def loginCode(request):
     try:
-        username=request.COOKIES['username']
+        username = request.COOKIES['username']
 
     except:
-        username=""
-    if len(username)<1:
-        isLogged=False
+        username = ""
+    if len(username) < 1:
+        isLogged = False
     else:
-        isLogged=True
-    userlogged={'username':username,'bool':isLogged}
+        isLogged = True
+    userlogged = {'username': username, 'bool': isLogged}
 
     username = request.POST.get('username')
     password = request.POST.get('password')
@@ -187,24 +203,23 @@ def loginCode(request):
     row = session.execute(
         "SELECT username, password FROM unisupport.users where username = %s AND password = %s ALLOW FILTERING;",
         [username, password])
-    
+
     request.session['member_id'] = username
-    
+
     if not row:
-        response=render(request, 'login.html')
+        response = render(request, 'login.html')
 
     else:
-        id=session.execute("SELECT userid FROM unisupport.users WHERE username = %s ALLOW FILTERING;", [username])[0][0]
-        
-        response=render(request, 'home.html')
-        userlogged={'username':username,'bool':isLogged, 'id':id}
+        id = session.execute("SELECT userid FROM unisupport.users WHERE username = %s ALLOW FILTERING;", [username])[0][
+            0]
+
+        response = render(request, 'home.html')
+        userlogged = {'username': username, 'bool': isLogged, 'id': id}
         response.set_cookie('username', username)
         response.set_cookie('id', id)
         return response
 
-
-    return render(request, 'login.html', {'response': response, 'userlogged':userlogged})
-
+    return render(request, 'login.html', {'response': response, 'userlogged': userlogged})
 
     # return render(request, 'login.html', {'response': response, 'userlogged': userlogged})
 
@@ -231,7 +246,6 @@ def logout(request):
 def search(request):
     try:
         username = request.COOKIES['username']
-
     except:
         username = ""
     if len(username) < 1:
@@ -349,35 +363,112 @@ def discussions(request):
 
     for i in getMessages:
         allMessages.append(
-            {'postid': i[0], 'sent_at': i[1].timestamp(), 'content': i[2], 'userid': i[3], 'username': i[4], 'time':time.strftime("%d %b %H:%M:%S",time.localtime(i[3]))})
+            {'postid': i[0], 'sent_at': i[1].timestamp(), 'content': i[2], 'userid': i[3], 'username': i[4],
+             'time': time.strftime("%d %b %H:%M:%S", time.localtime(i[3]))})
 
     allMessages = reversed(sorted(allMessages, key=lambda x: [1]))
-    
+
     return render(request, 'discussions.html', {'allMessages': allMessages, 'userlogged': userlogged})
 
 
 def sendMessage(request):
-    senderId = request.POST.get('senderId')
-    receiverId = request.POST.get('receiverId')
-    message = request.POST.get('message')
+
+
+    
+
+    try:
+        row = session.execute(
+            "SELECT senderid, senderusername, messagecontent, sent_at from unisupport.messages WHERE receiverid = %s ALLOW FILTERING;",[usernameId])
+        row = sorted(row, key=lambda x: x[3])
+    except BaseException:
+        row = []
+    contacts = []
+
+    row = reversed(list(row))
+
+    for user_row in row:
+        inContacts = False
+        addRow = {'id': user_row[0], 'name': user_row[1], 'content': user_row[2], 'timestamp': user_row[3]}
+        for i in range(len(contacts)):
+            if subset_dic({'id': user_row[0], 'name': user_row[1]}, contacts[i]):
+                inContacts = True
+        if not inContacts:
+            contacts.append(addRow)
+        #print(user_row)
+
+    
+
+    username = request.COOKIES['username']
+    #loggedInUser=username
+    usernameId = session.execute("SELECT userid FROM unisupport.users WHERE username = %s ALLOW FILTERING;", [username])[0][0]
+
+    senderId = session.execute("SELECT senderid, senderusername, messagecontent, sent_at from unisupport.messages WHERE receiverid = %s ALLOW FILTERING;",[usernameId])[0][0]
+    print(senderId)
+    receiverId = usernameId
+    receiverId, senderId=senderId,receiverId
+    message_ = request.POST.get('message')
+
+    try:
+            username = request.COOKIES['username']
+
+    except:
+        username = ""
+    if len(username) < 1:
+        isLogged = False
+        userlogged = {'username': '', 'bool': False}
+        return render(request, 'home.html', {'userlogged': userlogged})
+    else:
+        isLogged = True
+
+    userlogged = {'username': username, 'bool': isLogged}
+
+
+
     row = session.execute('select MAX(messageid) as max FROM unisupport.messages')
     try:
         idd = row[0][0] + 1
     except:
         idd = 0
-    row = session.execute('select username from unisupport.users where userid = %s ALLOW FILTERING;', senderId)
+    row = session.execute('select username from unisupport.users where userid = %s ALLOW FILTERING;', [senderId])
     try:
         sendername = row[0][0]
     except:
         sendername = "Wrong"
 
-    row = session.execute('select username from unisupport.users where userid = %s ALLOW FILTERING;', receiverId)
+    row = session.execute('select username from unisupport.users where userid = %s ALLOW FILTERING;', [receiverId])
     try:
         receivername = row[0][0]
     except:
         receivername = "Wrong"
 
-    row = session.execute("insert into unisupport.messages (messageid, sent_at, messagecontent, receiverid, "
-                          "receiverusername, senderid, senderusername) VALUES (%s, toTimestamp(now()),%s, %s, %s, %s,"
-                          " %s)",
-                          idd, message, receiverId, receivername, senderId, sendername)
+    otherPerson=receiverId
+    otherUser=session.execute(
+        "select * from unisupport.messages WHERE receiverid = %s and senderid = %s ALLOW FILTERING;",
+        [otherPerson, usernameId])
+
+
+
+    loggedInUser = session.execute(
+        "select * from unisupport.messages WHERE receiverid = %s and senderid = %s ALLOW FILTERING;",
+        [usernameId, otherPerson])
+
+
+
+    messages = []
+    for i in loggedInUser:
+        messages.append({"sender": i[4], "receiver": i[6],
+                         "time": i[1], "message": i[2]})
+    #print(len(messages))
+    for i in otherUser:
+        messages.append({"sender": i[4], "receiver": i[6],
+                         "time": i[1], "message": i[2]})
+    #print(len(messages))
+    messages = reversed(sorted(messages, key=lambda x: x['time']))
+
+    displayUser = session.execute("SELECT username FROM unisupport.users WHERE userid = %s ALLOW FILTERING;",
+                                  [otherPerson])
+
+    row = session.execute("INSERT INTO unisupport.messages (messageid, sent_at, messagecontent, receiverid, receiverusername, senderid, senderusername) VALUES (%s, toTimestamp(now()),%s, %s, %s, %s, %s)", [idd, message_, receiverId, receivername, senderId, sendername])
+    return render(request, 'help.html',
+                  {'users': contacts, 'messages': messages, 'displayUser': displayUser, 'userlogged': userlogged,
+                   'magicid': usernameId})
