@@ -292,6 +292,17 @@ def signupCode(request):
     return render(request, 'signup.html', {'response': response})
 
 def terms(request):
+    try:
+        username=request.COOKIES['username']
+        
+    except:
+        username=""
+    if len(username)<1:
+        isLogged=False
+    else:
+        isLogged=True
+    userlogged={'username':username,'bool':isLogged}
+
     return render(request, 'terms.html', {'userlogged':userlogged})
 
 def discussions(request):
