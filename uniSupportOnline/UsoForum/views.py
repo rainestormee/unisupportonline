@@ -78,12 +78,14 @@ def help(request):
 
     messages = reversed(sorted(messages, key=lambda x: x['time']))
 
-    print(contacts)
+    #print(contacts)
     # print("dingdong")
     return render(request, 'help.html', {'users': contacts, 'messages': messages})
 
 def helpCode(request):
+    print("hello1")
     print(request.POST.foo)
+    print("hello2")
     try:
         row = session.execute("SELECT senderid, senderusername, messagecontent, sent_at from unisupport.messages WHERE receiverid = 2 ALLOW FILTERING;")
     except BaseException:
