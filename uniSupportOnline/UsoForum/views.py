@@ -176,11 +176,10 @@ def loginCode(request):
     request.session['member_id'] = username
     
     if not row:
-        userlogged={'username':username,'bool':True}
         response=render(request, 'login.html')
 
     else:
-        
+        userlogged={'username':username,'bool':True}
         response=render(request, 'home.html')
         response.set_cookie('username', username)
         return response
