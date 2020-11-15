@@ -130,7 +130,7 @@ def validateEmail(email):
 
 def validateUsername(username):
     try:
-        username.encode('ascii', 'strict').decode()
+        username = username.encode('ascii', 'strict').decode()
     except:
         return False
     row = session.execute("SELECT username FROM unisupport.users where username = %s ALLOW FILTERING;",[username])
