@@ -15,6 +15,6 @@ urlpatterns = [
     path('loginCode/', views.loginCode),
     path('signupCode/', views.signupCode),
     path('discussions/', views.discussions, name='uso-discussions'),
-    patch('logout/',views.logout)
+    path('logout/',views.logout)
     # path('helpCode/',views.helpCode)
 ]
