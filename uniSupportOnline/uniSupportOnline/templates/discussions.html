@@ -54,23 +54,28 @@
 		<li class="nav-item"><a class="nav-link" href="../discussions">Discussions</a></li>
     </ul>
 
-    <div class="container col-md-4" style="margin-right: 0">
-        Logged in as: user
-    </div>
-
 </nav>
 <!-- End Navigation -->
 
-<div class="table container">
-    <table>
-        {% for message in allMessages %}
-        <tr>
-            <td>{{message.username}}</td>
-            <td>{{message.content}}</td>
-        </tr>
-        {% endfor %}
-    </table>
-</div>
+<div class="col-12 col-xl-9">
+	<h2class="h4 category mb-0 p-4 roundet-top text-light">Category</h2>
+	    <table class="table table-striped tablebordered table-responsive">
+				<thead class="thead-light">
+					<tr>
+						<th scope="col" class="forum-col">Topics</th>
+						<th scope="col">Last Message</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for message in allMessages %}
+	        <tr class="inline flex">
+	            <td><h3 class="h5 mb-0">{{message.username}}</h3></td>
+	            <td><p class="mb=0">{{message.content}}</p></td>
+	        </tr>
+	        {% endfor %}
+				</tbody>
+	    </table>
+	</div>
 
 
 
