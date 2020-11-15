@@ -82,6 +82,48 @@ def help(request):
     # print("dingdong")
     return render(request, 'help.html', {'users': contacts, 'messages': messages})
 
+def helpCode(request):
+    print(request.POST.foo)
+    try:
+        row = session.execute("SELECT senderid, senderusername, messagecontent, sent_at from unisupport.messages WHERE receiverid = 2 ALLOW FILTERING;")
+    except BaseException:
+        row = []
+    contacts = []
+
+    row = reversed(list(row))
+
+    for user_row in row:
+        inContacts = False
+        addRow = {'id': user_row[0], 'name': user_row[1], 'content': user_row[2], 'timestamp': user_row[3]}
+        for i in range(len(contacts)):
+            if subset_dic({'id': user_row[0], 'name': user_row[1]}, contacts[i]):
+                inContacts = True
+        if inContacts == False:
+            contacts.append(addRow)
+        print(user_row)
+
+    loggedInUser = session.execute(
+        "select * from unisupport.messages WHERE receiverid = 2 and senderid = 3 ALLOW FILTERING;")
+
+    otherUser = session.execute(
+        "select * from unisupport.messages WHERE receiverid = 3 and senderid = 2 ALLOW FILTERING;")
+
+    # sender #receiver #time #message
+
+    messages = []
+    for i in loggedInUser:
+        messages.append({"sender": i[4], "receiver": i[6],
+                         "time": i[1], "message": i[2]})
+
+    for i in otherUser:
+        messages.append({"sender": i[4], "receiver": i[6],
+                         "time": i[1], "message": i[2]})
+
+    messages = reversed(sorted(messages, key=lambda x: x['time']))
+    return render(request,'help.html', {'users': contacts, 'messages': messages})
+
+
+
 
 def login(request):
     return render(request, 'login.html')
