@@ -19,67 +19,51 @@
 </head>
 <body>
 
-<!-- Top Bar -->
-<div class="top-bar sticky-top">
+  <!-- Top Bar -->
+  <div class="top-bar bg-dark sticky-top">
     <div class="container">
-        <div class="col-12 text-right">
-            <p><a href="tel:+1234">Emergency line: +123 456 789</a></p>
-        </div>
+      <div class="col-12 text-right">
+        <p><a href="tel:+1234">Emergency line:  +123 456 789</a></p>
+      </div>
 
     </div>
-</div>
-<!-- End Top Bar -->
+  </div>
+  <!-- End Top Bar -->
 
 
-<!-- Navigation -->
-<div class="jumbotron">
+  <!-- Navigation -->
+  <div class="jumbotron" id="header">
     <h1>Unisupport</h1>
     <p>Your safe space</p>
-</div>
-<nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
-    <button class="navbar-toggler" data-target="collapse_target" data-toggle="collapse">
-        <span class="navbar-togler-icon"></span>
-    </button>
+  </div>
 
-    <!-- <a class="navbar-brand" href="index"><img src="{% static '/images/logo.png' %}" alt=""></a> -->
+    <nav class="navbar navbar-dark bg-dark sticky-top navbar-expand-lg">
+        <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarResponsive" name="button">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav bg-dark vw-80" style='padding-left: 2rem;'>
+              <li class="nav-item"><a class="nav-link" href="../">Home</a></li>
+              <li class="nav-item"><a class="nav-link" href="../dashboard">Dashboard</a></li>
+              <li class="nav-item"><a class="nav-link" href="../help">Help center</a></li>
+              <li class="nav-item"><a class="nav-link" href="../search">Search</a></li>
+            </ul>
 
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-        <li class="nav-item"><a class="nav-link" href="../">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="../dashboard">Dashboard</a></li>
-        <li class="nav-item"><a class="nav-link" href="../help">Help center</a></li>
-        <li class="nav-item"><a class="nav-link" href="../search">Search</a></li>
-    </ul>
-
-    <div class="container col-md-4" style="margin-right: 0%">
-        Logged in as: user
-    </div>
-
-</nav>
+      </nav>
 <!-- End Navigation -->
 
 
 <!-- Start Main -->
 <section class='main'>
-    <div class="row">
-        <p>Lorem ipsum dolor sit amet,
-            consectetur adipisicing elit,
-            sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua. Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco laboris nisi ut aliquip
-            ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-            in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-            officia deserunt mollit anim id est laborum.</p>
-        <p>Lorem ipsum dolor sit amet,
-            consectetur adipisicing elit,
-            sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua. Ut enim ad minim veniam,
-            quis nostrud exercitation ullamco laboris nisi ut aliquip
-            ex ea commodo consequat. Duis aute irure dolor in reprehenderit
-            in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-            officia deserunt mollit anim id est laborum.</p>
-    </div>
+  <div class="row">
+		<h2>Disclaimer:</h2>
+   <p>The scope of this web platform is to give every student the chance to anonimously express his feelings and pursue help
+	 from capable individuals.</p>
+	 <p>However, that doesn't imply that we assure problem solutioning for each and every user. We thereby don't take any responsibility
+ for bad outcomes caused by lack of communication and/or understanding. By using this site the user is aware that, while being anonymous, it is just as vulnerable to human interaction
+as it would be in a normal encounter.</p>
+<p> Discretion is advised!</p>
+  </div>
 </section>
 
 
@@ -87,6 +71,9 @@
 
 <!-- Start Footer -->
 <footer>
+  <div class="container text-center" style="margin-bottom: 3rem ">
+		<img src="{% static '/styles/logo.png' %}" style="width:30vw;">
+	</div>
     <div class="row">
         <div class="col-md-4 text-center">
             <a href="../terms">Terms of Service</a>
@@ -98,7 +85,7 @@
             <a href="../contact">Contact</a>
         </div>
         <div class="container text-center" style="margin-top: 2rem;">
-            <p>Copyright 2020 Unisuppport</p>
+            <p>Copyright 2020 Unisupport</p>
         </div>
     </div>
 </footer>
