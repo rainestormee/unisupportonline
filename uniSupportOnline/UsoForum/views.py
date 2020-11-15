@@ -86,6 +86,7 @@ def help(request):
         row = session.execute("SELECT userid FROM unisupport.users WHERE username = %s ALLOW FILTERING;", [username])
     except:
         username = ""
+        row = [['0']]
 
     # row = session.execute("SELECT userid FROM unisupport.users WHERE username = %s ALLOW FILTERING;", [username])
 
