@@ -35,23 +35,18 @@
 <section class="container-fluid" style="padding-top: 15vw">
   <section class="row justify-content-center" >
     <section class="col-12 col-sm-6 col-md-3">
-      <form action="/loginCode/" method="post" class="form-container" style="background-color: white; border-radius: 10px;padding: 30px;box-shadow: 0px 0px 10px 0px;">
-        <h4 class="text-center">Login</h4>
-        <div class="form-group">
-          <label for="username">Email address</label>
-          <input type="email" class="form-control" id="username" aria-describedby="emailHelp" placeholder="Enter email" required>
-          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-        </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" class="form-control" id="password" placeholder="Password" required>
-        </div>
-        <div class="form-group form-check">
-          <input type="checkbox" class="form-check-input" id="exampleCheck1">
-          <label class="form-check-label" for="exampleCheck1">Remember me</label>
-        </div>
-        <button type="submit" class="btn text-white btn-block" style="background-color: #944540">Submit</button>
-      </form>
+        <div class="login">
+            <form action="/loginCode/" method="post" class="form-container" style="background-color: white; border-radius: 10px;padding: 30px;box-shadow: 0px 0px 10px 0px;">
+              {% csrf_token %}
+              <h4 class="text-center">Login</h4>
+              <label for="username">Username:</label> <input type="text" id="username" class="form-control" placeholder="Username" name ="username" required><br>
+              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+              <label for="password">Password:</label> <input type="password" class="form-control" id="password" placeholder="Password" name="password" required><br>
+              <br>
+              <label for="submit"><input id="submit" name="submit" type="submit" value="Login" class="btn text-white btn-block" style="background-color: #944540"></label>
+          </div>
+      </div>
+    </form>
 
     </section>
   </section>
