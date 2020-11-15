@@ -6,9 +6,8 @@ function showResult(str) {
         });
     } else {
         const len = this.getConversations().filter(e => e.id.toLowerCase().includes(str.toLowerCase())).length;
-
         this.getConversations().forEach(e => {
-            if (e.id.toLowerCase().includes(str.toLowerCase())) {
+            if (unescape(e.id.toLowerCase()).includes(str.toLowerCase())) {
                 e.style.visibility = "visible";
                 e.style.display = "grid";
             } else {
@@ -27,6 +26,7 @@ window.onload = function() {
 }
 
 function switchChatMessage(name) {
+    name = unescape(name)
     this.getConversations().forEach(e => {
         if (e.id === name) {
             e.classList.add("active")
