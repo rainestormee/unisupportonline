@@ -57,91 +57,10 @@
                       {% csrf_token %}
                       <label for="username">User Username</label>
                       <input type="text" class="form-control" id="username" placeholder="Username" required>
-                    </div>
-                    <div class="form-group">
-                      {% csrf_token %}
                       <label for="email">Email address</label>
                       <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" required>
                       <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                    </div>
-                    <div class="form-group">
-                      {% csrf_token %}
-                      <label for="password">Password</label>
-                      <input type="password" class="form-control" id="password" placeholder="Password" required>
-                    </div>
-                    <button type="submit" class="btn text-white btn-block" style="background-color: #944540">Submit</button>
-                  </form>
-
-                </section>
-              </section>
-            </section>
-            <p> {{ response.message }} </p>
-        </div>
-    </div>
-</section>
-
-
-<!-- End Main -->
-
-
-<!-- jQuery -->
-<script src="../static/js/jquery-3.5.1.min.js"></script>
-<!-- Bootstrap 4.5 JS -->
-<script src="../static/js/bootstrap.min.js"></script>
-<!-- Popper JS -->
-<script src="../static/js/popper.min.js"></script>
-<!-- Font Awesome -->
-<script src="../static/js/all.min.js"></script>
-
-<!-- End Script Source Files -->
-</body><body style="background-color: #343a40;">
-
-  <!-- Top Bar -->
-  <div class="top-bar bg-dark sticky-top">
-    <div class="container">
-      <div class="col-12 text-right">
-        <p><a href="tel:+1234">Emergency line:  +123 456 789</a></p>
-      </div>
-
-    </div>
-  </div>
-<!-- End Top Bar -->
-
-
-<!-- Start Main -->
-<!-- <section class='main'>
-    <div class="row">
-        <div class="login-box">
-            <h1>Signup Page</h1>
-
-            <div class="login">
-              <form action="/signupCode/" method="post">
-                m
-                <label for="username">Username:</label> <input type="text" id="username" name ="username" required><br>
-                <label for="email">Email:</label> <input type="text" id="email" name ="email" required><br>
-                <label for="password">Password:</label> <input type="text" id="password" name = "password" required><br>
-
-                <br>
-                <label for="submit"><input id="submit" name="submit" type="submit" value="Register!"></label>
-            </div> -->
-            <section class="container-fluid" style="padding-top: 10vw">
-              <section class="row justify-content-center" >
-                <section class="col-12 col-sm-6 col-md-3">
-                  <form action="/signupCode/" method="post" class="form-container" style="background-color: white; border-radius: 10px;padding: 30px;box-shadow: 0px 0px 10px 0px;">
-                    <h4 class="text-center">Sign Up</h4>
-                    <div class="form-group">
-                      {% csrf_token %}
-                      <label for="username">User Username</label>
-                      <input type="text" class="form-control" id="username" placeholder="Username" required>
-                    </div>
-                    <div class="form-group">
-                      {% csrf_token %}
-                      <label for="email">Email address</label>
-                      <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email" required>
-                      <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                    </div>
-                    <div class="form-group">
-                      {% csrf_token %}
+                      <br>
                       <label for="password">Password</label>
                       <input type="password" class="form-control" id="password" placeholder="Password" required>
                     </div>
