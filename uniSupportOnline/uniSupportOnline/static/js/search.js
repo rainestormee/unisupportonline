@@ -25,7 +25,7 @@ window.onload = function() {
     this.getConversations()[0].classList.add("active");
 }
 
-function switchChatMessage(name) {
+function switchChatMessage(name, id) {
     name = unescape(name)
     this.getConversations().forEach(e => {
         if (e.id === name) {
@@ -34,7 +34,7 @@ function switchChatMessage(name) {
             e.classList.remove("active")
         }
     });
-    window.location.assign("/help?foo=" + name,true);
+    window.location.assign("/help?foo=" + id,true);
 }
 
 function getConversations() {
