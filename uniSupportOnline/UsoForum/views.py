@@ -120,6 +120,10 @@ def loginCode(request):
     return render(request, 'login.html', {'response': response})
 
     # DO LOGIN STUFF HERE OR PARSE VALUES WHERE YOU WANT
+def logout(request):
+    response=render(request, 'login.html')
+    response.set_cookie('username', '')
+    return response
 
 
 def search(request):
