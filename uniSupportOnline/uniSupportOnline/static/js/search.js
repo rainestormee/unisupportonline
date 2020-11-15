@@ -23,6 +23,7 @@ function showResult(str) {
 
 window.onload = function() {
     this.getConversations()[0].classList.add("active");
+//    window.location.assign("/help?foo=")
 }
 
 function switchChatMessage(name, id) {
