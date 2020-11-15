@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+<script src="../static/js/search.js"></script>
 <head>
     {% load static %}
     <meta charset="UTF-8">
@@ -59,8 +60,8 @@
 <!-- End Navigation -->
 
 <!-- Start Main -->
-<script src="../static/js/search.js"></script>
-<section class='main' onload="activateFirst()">
+
+<section class='main' onload="activateFirst();">
     <div id="chat-container">
         <div id="search-container">
             <input onkeyup="showResult(this.value);" placeholder="Search" type="text"/>
@@ -88,8 +89,7 @@
             <a href="#">+</a>
         </div>
         <div id="chat-title">
-            <span>Stinky Alex</span>
-            <img alt="Delete Conversation" src="{% static '/images/icons/trash-logo.svg' %}"/>
+            <span>{{users.0.name}}</span>
         </div>
         <div id="chat-message-list">
             <div class="message-row you-message">

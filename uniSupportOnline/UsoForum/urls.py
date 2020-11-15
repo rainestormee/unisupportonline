@@ -12,5 +12,4 @@ urlpatterns = [
     path('search/', views.search, name='uso-search'),
     path('signup/', views.signup, name='uso-signup'),
     path('terms/', views.terms, name='uso-terms'),
-
 ]
