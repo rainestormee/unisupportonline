@@ -71,7 +71,7 @@ def help(request):
     otherUser = session.execute(
         "select * from unisupport.messages WHERE receiverid = %s and senderid = 2 ALLOW FILTERING;", [otherPerson])
 
-    displayUser = session.execute("SELECT username FROM users WHERE userid = %s ALLOW FILTERING;," [otherPerson])
+    displayUser = session.execute("SELECT username FROM users WHERE userid = %s ALLOW FILTERING;", [otherPerson])
 
 
     # sender #receiver #time #message
