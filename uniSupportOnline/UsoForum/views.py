@@ -179,7 +179,7 @@ def loginCode(request):
         pass
 
     else:
-        response=render(request, 'login.html')
+        response=render(request, 'home.html')
         response.set_cookie('username', username)
         return response
 
