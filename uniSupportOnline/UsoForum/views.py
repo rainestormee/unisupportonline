@@ -120,12 +120,7 @@ def help(request):
         otherPerson = rowreal[0][0]
     try:
         row = session.execute(
-<<<<<<< HEAD
             "SELECT senderid, senderusername, messagecontent, sent_at from unisupport.messages WHERE receiverid = %s ALLOW FILTERING;",[usernameId])
-=======
-            "SELECT senderid, senderusername, messagecontent, sent_at from unisupport.messages WHERE receiverid = %s ALLOW FILTERING;",
-            usernameId)
->>>>>>> 2bf339a4019a8e6426de714eab40583bf9f416d8
         row = sorted(row, key=lambda x: x[3])
     except BaseException:
         row = []
