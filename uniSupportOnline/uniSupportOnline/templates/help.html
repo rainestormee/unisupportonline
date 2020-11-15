@@ -112,7 +112,7 @@
         <div id="chat-form">
             <br>
             <form method="post" action="/sendMessage">
-                <input type="hidden" id="senderid" value="{{ userlogged.id }}">
+                <input type="hidden" id="senderId" value="{{ userlogged.id }}">
                 <input type="hidden" id="receiverId" value="{{ displayUser.0.0 }}">
                 <input placeholder="Type a message" type="text" id="message" onkeypress="sendForm(this.value)"/>
                 <input type="submit" value="" id="form_submit" style="display: none;">

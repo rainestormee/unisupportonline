@@ -346,3 +346,18 @@ def discussions(request):
     allMessages = reversed(sorted(allMessages, key=lambda x: [1]))
 
     return render(request, 'discussions.html', {'allMessages': allMessages, 'userlogged': userlogged})
+
+
+def sendMessage(request):
+    senderId = request.POST.get('senderId')
+    receiverId = request.POST.get('receiverId')
+    message = request.POST.get('message')
+    row = session.execute('select MAX(messageid) as max FROM unisupport.messages')
+    row = session.execute('select username from unisupport.users where userid = %s', )
+    try:
+        idd = row[0][0] + 1
+    except:
+        idd = 0
+
+    row = session.execute("insert into unisupport.messages (messageid, sent_at, messagecontent, receiverid, receiverusername, senderid, senderusername) VALUES (%s, toTimestamp(now()),%s, %s, %s, %s, %s)",
+                          idd, message, receiverId, senderId)

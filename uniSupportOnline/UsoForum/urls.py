@@ -15,6 +15,7 @@ urlpatterns = [
     path('loginCode/', views.loginCode),
     path('signupCode/', views.signupCode),
     path('discussions/', views.discussions, name='uso-discussions'),
-    path('logout/', views.logout)
+    path('logout/', views.logout),
+    path('sendMessage', views.sendMessage)
     # path('helpCode/',views.helpCode)
 ]
