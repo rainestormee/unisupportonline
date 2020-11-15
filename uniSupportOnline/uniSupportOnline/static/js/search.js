@@ -12,10 +12,10 @@ function showResult(str) {
                 e.style.visibility = "visible";
                 e.style.display = "grid";
             } else {
-                if (len > 0) {
-                    e.style.display = "none";
-                } else {
+                if (len === 0) {
                     e.style.visibility = "hidden";
+                } else {
+                    e.style.display = "none";
                 }
             }
         });
