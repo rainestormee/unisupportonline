@@ -2,10 +2,11 @@ import hashlib
 import os
 import re
 import time
+
 from cassandra.auth import PlainTextAuthProvider
 from cassandra.cluster import Cluster
 from cassandra.query import tuple_factory
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 
 cloud_config = {
     'secure_connect_bundle': os.path.join(os.path.realpath(os.path.dirname(__file__)),
@@ -86,14 +87,13 @@ def help(request):
     except:
         username = ""
 
-    #row = session.execute("SELECT userid FROM unisupport.users WHERE username = %s ALLOW FILTERING;", [username])
+    # row = session.execute("SELECT userid FROM unisupport.users WHERE username = %s ALLOW FILTERING;", [username])
 
     try:
         usernameId = row[0][0]
     except BaseException:
         print('unexpected null value')
         usernameId = 0
-
 
     if len(username) < 1:
         isLogged = False
@@ -111,7 +111,8 @@ def help(request):
         otherPerson = 3
     try:
         row = session.execute(
-            "SELECT senderid, senderusername, messagecontent, sent_at from unisupport.messages WHERE receiverid = %s ALLOW FILTERING;", usernameId)
+            "SELECT senderid, senderusername, messagecontent, sent_at from unisupport.messages WHERE receiverid = %s ALLOW FILTERING;",
+            usernameId)
         row = sorted(row, key=lambda x: x[3])
     except BaseException:
         row = []
@@ -130,10 +131,12 @@ def help(request):
         print(user_row)
 
     loggedInUser = session.execute(
-        "select * from unisupport.messages WHERE receiverid = %s and senderid = %s ALLOW FILTERING;", [usernameId, otherPerson])
+        "select * from unisupport.messages WHERE receiverid = %s and senderid = %s ALLOW FILTERING;",
+        [usernameId, otherPerson])
 
     otherUser = session.execute(
-        "select * from unisupport.messages WHERE receiverid = %s and senderid = %s ALLOW FILTERING;", [otherPerson, usernameId])
+        "select * from unisupport.messages WHERE receiverid = %s and senderid = %s ALLOW FILTERING;",
+        [otherPerson, usernameId])
 
     displayUser = session.execute("SELECT username FROM unisupport.users WHERE userid = %s ALLOW FILTERING;",
                                   [otherPerson])
@@ -151,7 +154,8 @@ def help(request):
 
     messages = reversed(sorted(messages, key=lambda x: x['time']))
     return render(request, 'help.html',
-                  {'users': contacts, 'messages': messages, 'displayUser': displayUser, 'userlogged': userlogged, 'magicid':usernameId})
+                  {'users': contacts, 'messages': messages, 'displayUser': displayUser, 'userlogged': userlogged,
+                   'magicid': usernameId})
 
 
 def login(request):
@@ -168,17 +172,18 @@ def login(request):
 
     return render(request, 'login.html')
 
+
 def loginCode(request):
     try:
-        username=request.COOKIES['username']
+        username = request.COOKIES['username']
 
     except:
-        username=""
-    if len(username)<1:
-        isLogged=False
+        username = ""
+    if len(username) < 1:
+        isLogged = False
     else:
-        isLogged=True
-    userlogged={'username':username,'bool':isLogged}
+        isLogged = True
+    userlogged = {'username': username, 'bool': isLogged}
 
     username = request.POST.get('username')
     password = request.POST.get('password')
@@ -187,24 +192,23 @@ def loginCode(request):
     row = session.execute(
         "SELECT username, password FROM unisupport.users where username = %s AND password = %s ALLOW FILTERING;",
         [username, password])
-    
+
     request.session['member_id'] = username
-    
+
     if not row:
-        response=render(request, 'login.html')
+        response = render(request, 'login.html')
 
     else:
-        id=session.execute("SELECT userid FROM unisupport.users WHERE username = %s ALLOW FILTERING;", [username])[0][0]
-        
-        response=render(request, 'home.html')
-        userlogged={'username':username,'bool':isLogged, 'id':id}
+        id = session.execute("SELECT userid FROM unisupport.users WHERE username = %s ALLOW FILTERING;", [username])[0][
+            0]
+
+        response = render(request, 'home.html')
+        userlogged = {'username': username, 'bool': isLogged, 'id': id}
         response.set_cookie('username', username)
         response.set_cookie('id', id)
         return response
 
-
-    return render(request, 'login.html', {'response': response, 'userlogged':userlogged})
-
+    return render(request, 'login.html', {'response': response, 'userlogged': userlogged})
 
     # return render(request, 'login.html', {'response': response, 'userlogged': userlogged})
 
@@ -231,7 +235,6 @@ def logout(request):
 def search(request):
     try:
         username = request.COOKIES['username']
-
     except:
         username = ""
     if len(username) < 1:
@@ -349,10 +352,11 @@ def discussions(request):
 
     for i in getMessages:
         allMessages.append(
-            {'postid': i[0], 'sent_at': i[1].timestamp(), 'content': i[2], 'userid': i[3], 'username': i[4], 'time':time.strftime("%d %b %H:%M:%S",time.localtime(i[3]))})
+            {'postid': i[0], 'sent_at': i[1].timestamp(), 'content': i[2], 'userid': i[3], 'username': i[4],
+             'time': time.strftime("%d %b %H:%M:%S", time.localtime(i[3]))})
 
     allMessages = reversed(sorted(allMessages, key=lambda x: [1]))
-    
+
     return render(request, 'discussions.html', {'allMessages': allMessages, 'userlogged': userlogged})
 
 
