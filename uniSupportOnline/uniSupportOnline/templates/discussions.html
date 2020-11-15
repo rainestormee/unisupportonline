@@ -57,25 +57,27 @@
 </nav>
 <!-- End Navigation -->
 
-<div class="col-12 col-xl-9">
-	<h2 class="h4 category mb-0 p-4 blueb rounded-top text-light">Category</h2>
-	    <table class="table table-striped tablebordered table-responsive">
-				<thead class="thead-light">
-					<tr>
-						<th scope="col" class="forum-col">Topics</th>
-						<th scope="col">Last Message</th>
-					</tr>
-				</thead>
-				<tbody>
-					{% for message in allMessages %}
-	        <tr class="inline flex">
-	            <td><h3 class="h5 mb-0">{{message.username}}</h3></td>
-	            <td><p class="mb=0">{{message.content}}</p></td>
-	        </tr>
-	        {% endfor %}
-				</tbody>
-	    </table>
-	</div>
+<div class="container self-align-center w-80 my-3">
+	<div class="col-12 col-xl-9 self-allign-center">
+		<h2 class="h4 category mb-0 p-4 rounded-top text-light" style="background-color: blue;">Latest topics</h2>
+		    <table class="table table-striped tablebordered table-responsive">
+					<thead class="thead-light w-100">
+						<tr>
+							<th scope="col" class="forum-col">Topic</th>
+							<th scope="col" class="w-100">Last Message</th>
+						</tr>
+					</thead>
+					<tbody>
+						{% for message in allMessages %}
+		        <tr>
+		            <td><h3 class="h5 mb-0">{{message.username}}</h3></td>
+		            <td><p class="mb-0">{{message.content}}</p></td>
+		        </tr>
+		        {% endfor %}
+					</tbody>
+		    </table>
+		</div>
+</div>
 
 
 
