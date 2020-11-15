@@ -25,18 +25,71 @@ def subset_dic(subset, superset):
 # Create your views here.
 
 def home(request):
-    return render(request, 'home.html')
+    try:
+        username=request.COOKIES['username']
+        
+    except:
+        username=""
+    if len(username)<1:
+        isLogged=False
+    else:
+        isLogged=True
+    userlogged={'username':username,'bool':isLogged}
+    
+    return render(request, 'home.html', {'userlogged':userlogged})
 
 
 def about(request):
-    return render(request, 'about.html')
+    try:
+        username=request.COOKIES['username']
+        
+    except:
+        username=""
+    if len(username)<1:
+        isLogged=False
+    else:
+        isLogged=True
+    userlogged={'username':username,'bool':isLogged}
+    return render(request, 'about.html', {'userlogged':userlogged})
 
 
 def contact(request):
-    return render(request, 'contact.html')
-
+    try:
+        username=request.COOKIES['username']
+        
+    except:
+        username=""
+    if len(username)<1:
+        isLogged=False
+    else:
+        isLogged=True
+    userlogged={'username':username,'bool':isLogged}
+    return render(request, 'contact.html', {'userlogged':userlogged})
+"""
+def SetCookie(request):
+    response = HttpResponse('Visiting for the first time')
+    response.set_cookie('bookname','Sherlock Holmes')
+    return response
+"""
 
 def help(request):
+    try:
+        username=request.COOKIES['username']
+        
+    except:
+        username=""
+    if len(username)<1:
+        isLogged=False
+        userlogged={'username':'','bool':False}
+        return render(request, 'home.html', {'userlogged': userlogged})
+
+    else:
+        isLogged=True
+    userlogged={'username':username,'bool':isLogged}
+
+
+
+
     try:
         otherPerson = request.GET['foo']
         otherPerson = int(otherPerson)
@@ -82,14 +135,36 @@ def help(request):
                          "time": i[1], "message": i[2]})
 
     messages = reversed(sorted(messages, key=lambda x: x['time']))
-    return render(request, 'help.html', {'users': contacts, 'messages': messages, 'displayUser': displayUser, })
+    return render(request, 'help.html', {'users': contacts, 'messages': messages, 'displayUser': displayUser, 'userlogged': userlogged })
 
 
 def login(request):
+    try:
+        username=request.COOKIES['username']
+        
+    except:
+        username=""
+    if len(username)<1:
+        isLogged=False
+    else:
+        isLogged=True
+    userlogged={'username':username,'bool':isLogged}
+
     return render(request, 'login.html')
 
 
 def loginCode(request):
+    try:
+        username=request.COOKIES['username']
+        
+    except:
+        username=""
+    if len(username)<1:
+        isLogged=False
+    else:
+        isLogged=True
+    userlogged={'username':username,'bool':isLogged}
+
     username = request.POST.get('username')
     password = request.POST.get('password')
     password = hashlib.sha512(password.encode()).hexdigest()
@@ -97,26 +172,67 @@ def loginCode(request):
     row = session.execute(
         "SELECT username, password FROM unisupport.users where username = %s AND password = %s ALLOW FILTERING;",
         [username, password])
+    
+    request.session['member_id'] = username
+    
     if not row:
-        response = {"bool": False, "user": "", "message": "You are not logged in."}
+        pass
 
     else:
-        response.set_cookie('username', datetime.datetime.now())
-        response = {"bool": True, "user": username, "message": "You are logged in as " + username}
+        response=render(request, 'login.html')
+        response.set_cookie('username', username)
+        return response
 
-    request.session['member_id'] = username
 
-    return render(request, 'login.html', {'response': response})
+    return render(request, 'login.html', {'response': response, 'userlogged':userlogged})
+
 
     # DO LOGIN STUFF HERE OR PARSE VALUES WHERE YOU WANT
+def logout(request):
+    try:
+        username=request.COOKIES['username']
+        
+    except:
+        username=""
+    if len(username)<1:
+        isLogged=False
+    else:
+        isLogged=True
+    userlogged={'username':username,'bool':isLogged}
+
+    response=render(request, 'login.html')
+    response.set_cookie('username', '')
+    return response
 
 
 def search(request):
-    return render(request, 'search.html')
+    try:
+        username=request.COOKIES['username']
+        
+    except:
+        username=""
+    if len(username)<1:
+        isLogged=False
+    else:
+        isLogged=True
+    userlogged={'username':username,'bool':isLogged}
+
+    return render(request, 'search.html', {'userlogged':userlogged})
 
 
 def signup(request):
-    return render(request, 'signup.html')
+    try:
+        username=request.COOKIES['username']
+        
+    except:
+        username=""
+    if len(username)<1:
+        isLogged=False
+    else:
+        isLogged=True
+    userlogged={'username':username,'bool':isLogged}
+
+    return render(request, 'signup.html', {'userlogged':userlogged})
 
 def validateEmail(email):
     regex = r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)"
@@ -143,6 +259,17 @@ def validatePassword(password):
         return None
 
 def signupCode(request):
+    try:
+        username=request.COOKIES['username']
+        
+    except:
+        username=""
+    if len(username)<1:
+        isLogged=False
+    else:
+        isLogged=True
+    userlogged={'username':username,'bool':isLogged}
+
     username=request.POST.get('username')
     password=request.POST.get('password')
     email=request.POST.get('email')
@@ -165,9 +292,21 @@ def signupCode(request):
     return render(request, 'signup.html', {'response': response})
 
 def terms(request):
-    return render(request, 'terms.html')
+    return render(request, 'terms.html', {'userlogged':userlogged})
 
 def discussions(request):
+
+    try:
+        username=request.COOKIES['username']
+        
+    except:
+        username=""
+    if len(username)<1:
+        isLogged=False
+    else:
+        isLogged=True
+    userlogged={'username':username,'bool':isLogged}
+
     allMessages=[]
 
     getMessages = session.execute("SELECT * FROM unisupport.posts")
@@ -176,4 +315,4 @@ def discussions(request):
         allMessages.append({'postid': i[0],'sent_at': i[1].timestamp(),'content': i[2],'userid':i[3],'username':i[4]})
     allMessages = reversed(sorted(allMessages, key=lambda x:[1]))
 
-    return render(request, 'discussions.html',{'allMessages':allMessages})
+    return render(request, 'discussions.html',{'allMessages':allMessages, 'userlogged':userlogged})
