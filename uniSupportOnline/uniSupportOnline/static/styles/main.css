@@ -1,6 +1,7 @@
 
 #parallax-image{
-  background-image: url("../images/bigbrain2.jpg");
+  background-image: url("/static/images/unisupport.png");
+  background-color: white;
   background-position: center;
   background-repeat: no-repeat;
   height:95vh;
@@ -8,7 +9,7 @@
   background-size: contain;
 } 
 #parallax-image2{
-  background-image: url("/static/images/color_brain.jpg");
+  background-image: url("/static/images/tree.jpg");
   background-position: center;
   background-repeat: no-repeat;
   height:30vw;
