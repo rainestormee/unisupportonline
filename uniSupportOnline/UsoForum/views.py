@@ -303,6 +303,8 @@ def discussions(request):
         username=""
     if len(username)<1:
         isLogged=False
+        userlogged={'username':'','bool':False}
+        return render(request, 'home.html', {'userlogged': userlogged})
     else:
         isLogged=True
     userlogged={'username':username,'bool':isLogged}
