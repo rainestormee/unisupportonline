@@ -40,10 +40,12 @@
               {% csrf_token %}
               <h4 class="text-center">Login</h4>
               <label for="username">Username:</label> <input type="text" id="username" class="form-control" placeholder="Username" name ="username" required><br>
-              <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
               <label for="password">Password:</label> <input type="password" class="form-control" id="password" placeholder="Password" name="password" required><br>
+              <div class="">
+               Don't have an account?  <a href="signup.html">Sign up</a>
+              </div>
               <br>
-              <label for="submit"><input id="submit" name="submit" type="submit" value="Login" class="btn text-white btn-block" style="background-color: #944540"></label>
+              <label for="submit"><input id="submit" name="submit" type="submit" value="Login" class="btn text-white" style="background-color: #944540"></label>
           </div>
       </div>
     </form>
