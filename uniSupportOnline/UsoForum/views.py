@@ -108,13 +108,13 @@ def helpCode(request):
             contacts.append(addRow)
         print(user_row)
 
-    otherPersonID=session.execute("SELECT userid FROM unisupport.users where username = %s ALLOW FILTERING ;",[otherPerson])
+    otherPersonID=session.execute("SELECT userid FROM unisupport.users where username = %s ALLOW FILTERING ;", [otherPerson])
 
     loggedInUser = session.execute(
-        "select * from unisupport.messages WHERE receiverid = 2 and senderid = %s ALLOW FILTERING;",[otherPersonID])
+        "select * from unisupport.messages WHERE receiverid = 2 and senderid = %s ALLOW FILTERING;", [otherPersonID])
 
     otherUser = session.execute(
-        "select * from unisupport.messages WHERE receiverid = %s and senderid = 2 ALLOW FILTERING;",[otherPersonID])
+        "select * from unisupport.messages WHERE receiverid = %s and senderid = 2 ALLOW FILTERING;", [otherPersonID])
 
     # sender #receiver #time #message
     
