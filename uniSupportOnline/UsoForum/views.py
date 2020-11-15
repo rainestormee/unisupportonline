@@ -41,57 +41,17 @@ def dashboard(request):
 
 
 def help(request):
-    try:
-        row = session.execute("SELECT senderid, senderusername, messagecontent, sent_at from unisupport.messages WHERE receiverid = 2 ALLOW FILTERING;")
-    except BaseException:
-        row = []
-    contacts = []
-
-    row = reversed(list(row))
-
-    for user_row in row:
-        inContacts = False
-        addRow = {'id': user_row[0], 'name': user_row[1], 'content': user_row[2], 'timestamp': user_row[3]}
-        for i in range(len(contacts)):
-            if subset_dic({'id': user_row[0], 'name': user_row[1]}, contacts[i]):
-                inContacts = True
-        if inContacts == False:
-            contacts.append(addRow)
-        print(user_row)
-
-    loggedInUser = session.execute(
-        "select * from unisupport.messages WHERE receiverid = 2 and senderid = 3 ALLOW FILTERING;")
-
-    otherUser = session.execute(
-        "select * from unisupport.messages WHERE receiverid = 3 and senderid = 2 ALLOW FILTERING;")
-
-    # sender #receiver #time #message
-
-    messages = []
-    for i in loggedInUser:
-        messages.append({"sender": i[4], "receiver": i[6],
-                         "time": i[1], "message": i[2]})
-
-    for i in otherUser:
-        messages.append({"sender": i[4], "receiver": i[6],
-                         "time": i[1], "message": i[2]})
-
-    messages = reversed(sorted(messages, key=lambda x: x['time']))
-
-    #print(contacts)
-    # print("dingdong")
-    return render(request, 'help.html', {'users': contacts, 'messages': messages})
-
-def helpCode(request):
     print("hello1")
     try:
         otherPerson=request.GET['foo']
+        otherPerson=int(otherPerson)
         print(otherPerson)
     except:
-        return None;
+        otherPerson=3
     print("hello2")
     try:
         row = session.execute("SELECT senderid, senderusername, messagecontent, sent_at from unisupport.messages WHERE receiverid = 2 ALLOW FILTERING;")
+        row = sorted(row, key=lambda x: x[3])
     except BaseException:
         row = []
     contacts = []
@@ -108,6 +68,7 @@ def helpCode(request):
             contacts.append(addRow)
         print(user_row)
 
+<<<<<<< HEAD
     otherPersonID=session.execute("SELECT userid FROM unisupport.users where username = %s ALLOW FILTERING ;", [otherPerson])
 
     loggedInUser = session.execute(
@@ -115,6 +76,15 @@ def helpCode(request):
 
     otherUser = session.execute(
         "select * from unisupport.messages WHERE receiverid = %s and senderid = 2 ALLOW FILTERING;", [otherPersonID])
+=======
+    otherPersonID=session.execute("SELECT userid FROM unisupport.users where userid = %s ALLOW FILTERING ;",[otherPerson])
+
+    loggedInUser = session.execute(
+        "select * from unisupport.messages WHERE receiverid = 2 and senderid = %s ALLOW FILTERING;",otherPersonID[0])
+
+    otherUser = session.execute(
+        "select * from unisupport.messages WHERE receiverid = %s and senderid = 2 ALLOW FILTERING;",otherPersonID[0])
+>>>>>>> 9e83c9161944561a64aa591e0ed1c9d4f5937d34
 
     # sender #receiver #time #message
     
@@ -129,6 +99,8 @@ def helpCode(request):
 
     messages = reversed(sorted(messages, key=lambda x: x['time']))
     return render(request,'help.html', {'users': contacts, 'messages': messages})
+
+
 
 
 
