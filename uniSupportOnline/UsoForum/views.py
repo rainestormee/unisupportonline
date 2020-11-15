@@ -1,7 +1,5 @@
 from django.shortcuts import render
-
-
-
+import hashlib
 from cassandra.cluster import Cluster
 from cassandra.auth import PlainTextAuthProvider
 from cassandra.query import tuple_factory
@@ -55,9 +53,31 @@ def help(request):
         if inContacts==False:
             contacts.append(addRow)
         print(user_row)
+
+    import datetime
+
+    loggedInUser = session.execute("select * from unisupport.messages WHERE receiverid = 2 and senderid = 3 ALLOW FILTERING;")
+
+    otherUser = session.execute("select * from unisupport.messages WHERE receiverid = 3 and senderid = 2 ALLOW FILTERING;")
+
+    #sender #receiver #time #message
+
+    messages=[]
+    for i in loggedInUser:
+        messages.append({"sender": i[4],"receiver":i[6],
+                        "time":i[1].timestamp(),"message":i[2]})
+
+
+    for i in otherUser:
+        messages.append({"sender": i[4],"receiver":i[6],
+                        "time":i[1].timestamp(),"message":i[2]})
+
+    messages=sorted(messages, key=lambda x: x['time'])
+
+
     print(contacts)
     #print("dingdong")
-    return render(request, 'help.html', {'users':contacts})
+    return render(request, 'help.html', {'users':contacts, 'messages':messages})
 
 
 def login(request):
@@ -66,10 +86,16 @@ def login(request):
 
 
 def loginCode(request):
+<<<<<<< HEAD
 
     username = request.POST.get('username')
     password = request.POST.get('password')
     print(username, password)
+=======
+    username=request.POST.get('username')
+    password=request.POST.get('password')
+    password=hashlib.sha512(password.encode()).hexdigest()
+>>>>>>> 2e711eea31d5b99d3306e5ef18c1a7b38cb3633e
 
     row = session.execute("SELECT username, password FROM unisupport.users where username = %s AND password = %s ALLOW FILTERING;",[username, password])
     if not row:
