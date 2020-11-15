@@ -150,11 +150,10 @@ def signupCode(request):
         username = username.encode('ascii', 'strict').decode()
         password = validatePassword(password)
         password=hashlib.sha512(password).hexdigest()
-
-        try:
-            row = session.execute('SELECT MAX(userid) AS max FROM unisupport.users')
+        row = session.execute('SELECT MAX(userid) AS max FROM unisupport.users')
+        if(row is not None):    
             userid = row[0][0] + 1
-        except:
+        else:
             userid = 0
 
         row = session.execute("INSERT INTO unisupport.users (userid, accounttype, email, password, username) VALUES (%s, %s, %s, %s, %s);", [userid, 'User', email, password, username])
