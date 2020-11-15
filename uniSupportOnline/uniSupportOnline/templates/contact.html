@@ -6,7 +6,7 @@
     <meta content="width=device-width, initial-scale=1.0, viewport-fit=cover" name="viewport">
     <meta content="ie=edge" http-equiv="X-UA-Compatible">
     <title>Unisupport</title>
-    <link href="{% static '/images/logo.png' %}" rel="shortcut icon">
+    <link href="{% static '/images/bigbrain.jpg' %}" rel="shortcut icon">
     <!-- Bootstrap 4.5 CSS -->
     <link href="{% static '/styles/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static '/styles/bootstrap.css' %}" rel="stylesheet">
@@ -19,40 +19,35 @@
 </head>
 <body>
 
-<!-- Top Bar -->
-<div class="top-bar sticky-top">
+  <!-- Top Bar -->
+  <div class="top-bar bg-dark sticky-top">
     <div class="container">
-        <div class="col-12 text-right">
-            <p><a href="tel:+1234">Emergency line: +123 456 789</a></p>
-        </div>
+      <div class="col-12 text-right">
+        <p><a href="tel:+1234">Emergency line:  +123 456 789</a></p>
+      </div>
 
     </div>
-</div>
-<!-- End Top Bar -->
+  </div>
+  <!-- End Top Bar -->
 
 
-<!-- Navigation -->
-<div class="jumbotron" id="header">
+  <!-- Navigation -->
+  <div class="jumbotron" id="header">
     <h1>Unisupport</h1>
     <p>Your safe space</p>
-</div>
-<nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
-    <button class="navbar-toggler" data-target="collapse_target" data-toggle="collapse">
-        <span class="navbar-togler-icon"></span>
-    </button>
+  </div>
 
-    <!-- <a class="navbar-brand" href="index"><img src="{% static '/images/logo.png' %}" alt=""></a> -->
-
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-        <li class="nav-item"><a class="nav-link" href="../">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="../dashboard">Dashboard</a></li>
-        <li class="nav-item"><a class="nav-link" href="../help">Help center</a></li>
-        <li class="nav-item"><a class="nav-link" href="../search">Search</a></li>
-    </ul>
-
-    <div class="container col-md-4" style="margin-right: 0%">
-        Logged in as: user
-    </div>
+    <nav class="navbar navbar-dark bg-dark sticky-top navbar-expand-lg">
+        <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarResponsive" name="button">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav bg-dark vw-80" style='padding-left: 2rem;'>
+            <li class="nav-item"><a class="nav-link" href="../">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="../dashboard">Dashboard</a></li>
+            <li class="nav-item"><a class="nav-link" href="../help">Help center</a></li>
+            <li class="nav-item"><a class="nav-link" href="../search">Search</a></li>
+          </ul>
 
 </nav>
 <!-- End Navigation -->
@@ -61,40 +56,66 @@
 <!-- Start Main -->
 
 <section>
-    <div class="row">
-        <h1>The team</h1>
+	<div class="text-center">
+		<p style="font-size: 3rem; margin-top: 2vw;">The team</p>
+	</div>
+	<div class="row" style="margin-bottom: 3rem">
+		<div class="col">
+			<div class="jumbotron">
+			  <h3 class="display-4">Andrei</h3>
+			  <hr class="my-6">
+				<p class="lead">Backend  Functionalities</p>
+				<div class="card text-white" style="background-color: #944540">
+					<div class="card-body" href="">axc238@student.bham.ac.uk</div>
+				</div>
+			</div>
+		</div>
 
-        <div class="row">
-            <div class="col">
-                <div class="jumbotron">
-                    Teams1
-                </div>
-            </div>
+		<div class="col">
+			<div class="jumbotron">
+			  <h3 class="display-4">Raine</h3>
+			  <hr class="my-6">
+				<p class="lead">Backend  Serverside</p>
+				<div class="card text-white" style="background-color: #944540">
+					<div class="card-body" href="">rca059@student.bham.ac.uk</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
-            <div class="col">
-                <div class="jumbotron">
-                    Teams1
-                </div>
-            </div>
+		<div class="row" style="margin-bottom: 3rem">
+		<div class="col">
+			<div class="jumbotron">
+				<h3 class="display-4">Alexandre</h3>
+				<hr class="my-6">
+				<p class="lead">Backend Functionalities</p>
+				<div class="card text-white" style="background-color: #944540">
+					<div class="card-body" href="">AXD128@student.bham.ac.uk</div>
+				</div>
+			</div>
+		</div>
 
-            <div class="col">
-                <div class="jumbotron">
-                    Teams1
-                </div>
-            </div>
+		<div class="col" >
+			<div class="jumbotron">
+				<h3 class="display-4">Eusebiu</h3>
+				<hr class="my-6">
+				<p class="lead">Frontend  User interface</p>
+				<div class="card text-white" style="background-color: #944540">
+					<div class="card-body" href="">veie3043@scs.ubbcluj.ro</div>
+				</div>
+			</div>
+		</div>
 
-            <div class="col">
-                <div class="jumbotron">
-                    Teams1
-                </div>
-            </div>
-        </div>
+	</div>
 </section>
 
 <!-- End Main -->
 
 <!-- Start Footer -->
 <footer>
+  <div class="container text-center" style="margin-bottom: 3rem ">
+    <img src="{% static '/images/logo.png' %}" style="width:30vw;">
+  </div>
     <div class="row">
         <div class="col-md-4 text-center">
             <a href="../terms">Terms of Service</a>

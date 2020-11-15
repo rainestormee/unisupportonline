@@ -45,10 +45,10 @@
     <!-- <a class="navbar-brand" href="index"><img src="{% static '/images/logo.png' %}" alt=""></a> -->
 
       <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-				<li class="nav-item"><a class="nav-link" href="./">Home</a></li>
-				<li class="nav-item"><a class="nav-link" href="./dashboard">Dashboard</a></li>
-				<li class="nav-item"><a class="nav-link" href="./help">Help center</a></li>
-				<li class="nav-item"><a class="nav-link" href="./search">Search</a></li>
+				<li class="nav-item"><a class="nav-link" href="../">Home</a></li>
+				<li class="nav-item"><a class="nav-link" href="../dashboard">Dashboard</a></li>
+				<li class="nav-item"><a class="nav-link" href="../help">Help center</a></li>
+				<li class="nav-item"><a class="nav-link" href="../search">Search</a></li>
       </ul>
 
     <div class="container col-md-4" style="margin-right: 0%">
@@ -62,25 +62,23 @@
 <!-- Start Main -->
 <section class='main'>
     <div class="row">
-        <form action="POST">
-            <div class="login-box">
-                <h1>Login</h1>
 
-                <div class="textbox">
-                    <i aria-hidden="true" class="fa fa-user"></i>
-                    <input name="username" placeholder="Username" type="text" value="{{ response.user }}">
-                </div>
+      <div class="login-box">
+          <h1>Login</h1>
 
-                <div class="textbox">
-                    <i aria-hidden="true" class="fa fa-lock"></i>
-                    
-                    <input name="password" placeholder="Password" type="password" value="{{ pass }}">
-                    
-                </div>
-
-                <input class="button" name="login" type="submit" value="Sign In">
-            </div>
-        </form>
+          <div class="login">
+            <form action="/loginCode/" method="post">
+              {% csrf_token %}
+              <label for="username">Username:</label> <input type="text" id="username" name ="username" required><br>
+              <label for="password">Password:</label> <input type="text" id="password" name = "password" required><br>
+              
+              <br>
+              <label for="submit"><input id="submit" name="submit" type="submit" value="Login"></label>
+          </div>
+      </div>
+      <p>
+        {{ response.message }}
+      </p>
 
     </div>
 </section>

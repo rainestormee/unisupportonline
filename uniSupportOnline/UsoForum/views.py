@@ -1,5 +1,7 @@
 from django.shortcuts import render
 
+
+
 from cassandra.cluster import Cluster
 from cassandra.auth import PlainTextAuthProvider
 from cassandra.query import tuple_factory
@@ -59,15 +61,27 @@ def help(request):
 
 
 def login(request):
-    userVar = None
-    passVar = None
-    row = session.execute("SELECT username, password FROM unisupport.users where username = %s AND password = %s ALLOW FILTERING;",[userVar, passVar])
 
+    return render(request, 'login.html')
+
+
+def loginCode(request):
+
+    username = request.POST.get('username')
+    password = request.POST.get('password')
+    print(username, password)
+
+    row = session.execute("SELECT username, password FROM unisupport.users where username = %s AND password = %s ALLOW FILTERING;",[username, password])
     if not row:
-        response={"bool":True, "user":userVar}
+        response = {"bool": False, "user": "", "message": "You are not logged in."}
+        
     else:
-        response={"bool":False, "user":""}
-    return render(request, 'login.html',{'response':response})
+        response={"bool": True, "user": username, "message": "You are logged in as "+username}
+
+    return render(request, 'login.html', {'response': response})
+
+    #DO LOGIN STUFF HERE OR PARSE VALUES WHERE YOU WANT
+
 
 
 def search(request):
