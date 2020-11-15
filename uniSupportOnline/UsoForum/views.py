@@ -1,22 +1,27 @@
-from django.shortcuts import render
 import hashlib
-from cassandra.cluster import Cluster
-from cassandra.auth import PlainTextAuthProvider
-from cassandra.query import tuple_factory
 import os
 
-cloud_config={
-    'secure_connect_bundle': os.path.join(os.path.realpath(os.path.dirname(__file__)), 'secure-connect-unisupportdb.zip')
+from cassandra.auth import PlainTextAuthProvider
+from cassandra.cluster import Cluster
+from cassandra.query import tuple_factory
+from django.shortcuts import render
+
+cloud_config = {
+    'secure_connect_bundle': os.path.join(os.path.realpath(os.path.dirname(__file__)),
+                                          'secure-connect-unisupportdb.zip')
 }
 
-auth_provider=PlainTextAuthProvider('unisupportdb','supersecurepassword')
-cluster=Cluster(cloud=cloud_config, auth_provider=auth_provider)
-session=cluster.connect()
+auth_provider = PlainTextAuthProvider('unisupportdb', 'supersecurepassword')
+cluster = Cluster(cloud=cloud_config, auth_provider=auth_provider)
+session = cluster.connect()
 
 session.row_factory = tuple_factory
 
+
 def subset_dic(subset, superset):
     return len(set(subset.items()) & set(superset.items())) == len(subset)
+
+
 # Create your views here.
 
 def home(request):
@@ -37,70 +42,69 @@ def dashboard(request):
 
 def help(request):
     try:
-        row = session.execute("SELECT senderid, senderusername, messagecontent from unisupport.messages WHERE receiverid = 2 ALLOW FILTERING;")
-    except:
-        row=[]
-    contacts=[]
+        row = session.execute(
+            "SELECT senderid, senderusername, messagecontent from unisupport.messages WHERE receiverid = 2 ALLOW FILTERING;")
+    except BaseException:
+        row = []
+    contacts = []
 
-    row=reversed(list(row))
+    row = reversed(list(row))
 
     for user_row in row:
-        inContacts=False
-        addRow={'id':user_row[0], 'name':user_row[1], 'content':user_row[2]}
+        inContacts = False
+        addRow = {'id': user_row[0], 'name': user_row[1], 'content': user_row[2]}
         for i in range(len(contacts)):
-            if subset_dic({'id':user_row[0], 'name':user_row[1]}, contacts[i]):
-                inContacts=True
-        if inContacts==False:
+            if subset_dic({'id': user_row[0], 'name': user_row[1]}, contacts[i]):
+                inContacts = True
+        if inContacts == False:
             contacts.append(addRow)
         print(user_row)
 
-    import datetime
+    loggedInUser = session.execute(
+        "select * from unisupport.messages WHERE receiverid = 2 and senderid = 3 ALLOW FILTERING;")
 
-    loggedInUser = session.execute("select * from unisupport.messages WHERE receiverid = 2 and senderid = 3 ALLOW FILTERING;")
+    otherUser = session.execute(
+        "select * from unisupport.messages WHERE receiverid = 3 and senderid = 2 ALLOW FILTERING;")
 
-    otherUser = session.execute("select * from unisupport.messages WHERE receiverid = 3 and senderid = 2 ALLOW FILTERING;")
+    # sender #receiver #time #message
 
-    #sender #receiver #time #message
-
-    messages=[]
+    messages = []
     for i in loggedInUser:
-        messages.append({"sender": i[4],"receiver":i[6],
-                        "time":i[1].timestamp(),"message":i[2]})
-
+        messages.append({"sender": i[4], "receiver": i[6],
+                         "time": i[1].timestamp(), "message": i[2]})
 
     for i in otherUser:
-        messages.append({"sender": i[4],"receiver":i[6],
-                        "time":i[1].timestamp(),"message":i[2]})
+        messages.append({"sender": i[4], "receiver": i[6],
+                         "time": i[1].timestamp(), "message": i[2]})
 
-    messages=sorted(messages, key=lambda x: x['time'])
-
+    messages = sorted(messages, key=lambda x: x['time'])
 
     print(contacts)
-    #print("dingdong")
-    return render(request, 'help.html', {'users':contacts, 'messages':messages})
+    # print("dingdong")
+    return render(request, 'help.html', {'users': contacts, 'messages': messages})
 
 
 def login(request):
-
     return render(request, 'login.html')
 
 
 def loginCode(request):
-    username=request.POST.get('username')
-    password=request.POST.get('password')
-    password=hashlib.sha512(password.encode()).hexdigest()
+    username = request.POST.get('username')
+    password = request.POST.get('password')
+    password = hashlib.sha512(password.encode()).hexdigest()
 
-    row = session.execute("SELECT username, password FROM unisupport.users where username = %s AND password = %s ALLOW FILTERING;",[username, password])
+    row = session.execute(
+        "SELECT username, password FROM unisupport.users where username = %s AND password = %s ALLOW FILTERING;",
+        [username, password])
     if not row:
         response = {"bool": False, "user": "", "message": "You are not logged in."}
-        
+
     else:
-        response={"bool": True, "user": username, "message": "You are logged in as "+username}
+        response = {"bool": True, "user": username, "message": "You are logged in as " + username}
 
     return render(request, 'login.html', {'response': response})
 
-    #DO LOGIN STUFF HERE OR PARSE VALUES WHERE YOU WANT
-
+    # DO LOGIN STUFF HERE OR PARSE VALUES WHERE YOU WANT
 
 
 def search(request):
