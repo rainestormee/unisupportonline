@@ -23,7 +23,7 @@
   <div class="top-bar bg-dark sticky-top">
     <div class="container">
       <div class="col-12 text-right">
-        <p><a href="tel:+1234">Emergency line:  +123 456 789</a></p>
+        <p><a href="tel:+1234">Emergency line:  111</a></p>
       </div>
 
     </div>
@@ -38,26 +38,26 @@
   </div>
 
   <nav class="navbar navbar-dark bg-dark sticky-top navbar-expand-lg">
-        <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarResponsive" name="button">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav vw-80" style='padding-left: 2rem;'>
-            <li class="nav-item"><a class="nav-link" href="../">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="../discussions">Discussions</a></li>
-            <li class="nav-item"><a class="nav-link" href="../help">Help center</a></li>
-            <li class="nav-item"><a class="nav-link" href="../search">Search</a></li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
-              <div class="dropdown-menu">
-                <a class="dropdown-item" id="notloggedin" href="#">Login</a>
-                <a class="dropdown-item" id="loggedin" href="#">{{bob}}</a>  <!-- <- TODO: this thing  -->
-                <a class="dropdown-item" id="loggedin2" href="#">Log out</a>
-              </div>
-          </li>
-          </ul>
-        </div>
-    </nav>
+      <button class="navbar-toggler " type="button" data-toggle="collapse" data-target="#navbarResponsive" name="button">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav vw-80" style='padding-left: 2rem;'>
+          <li class="nav-item bg-dark"><a class="nav-link" href="../">Home</a></li>
+          <li class="nav-item bg-dark"><a class="nav-link" href="../discussions">Discussions</a></li>
+          <li class="nav-item bg-dark"><a class="nav-link" href="../help">Help center</a></li>
+          <li class="nav-item bg-dark"><a class="nav-link" href="../search">Search</a></li>
+          <li class="nav-item dropdown bg-dark">
+            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Account</a>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" id="notloggedin" href="../login">Log in</a>
+              <a class="dropdown-item" id="loggedin">{{bob}}</a>  <!-- <- TODO: this thing  -->
+              <a class="dropdown-item" id="loggedin2" href="../login">Log out</a>
+            </div>
+        </li>
+        </ul>
+      </div>
+  </nav>
 <!-- End Navigation -->
 
 
