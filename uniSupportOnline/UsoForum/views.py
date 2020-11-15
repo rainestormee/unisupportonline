@@ -118,9 +118,6 @@ def search(request):
 def signup(request):
     return render(request, 'signup.html')
 
-
-
-
 def validateEmail(email):
     regex = r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)"
     if not re.match(regex, email):
@@ -165,3 +162,6 @@ def signupCode(request):
 
 def terms(request):
     return render(request, 'terms.html')
+
+def discussions(request):
+    return render(request, 'discussions.html')

@@ -15,5 +15,6 @@ urlpatterns = [
     path('terms/', views.terms, name='uso-terms'),
     path('loginCode/', views.loginCode),
     path('signupCode/', views.signupCode),
+    path('discussions/',views.discussions, name='uso-discussions')
     # path('helpCode/',views.helpCode)
 ]
