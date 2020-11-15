@@ -84,7 +84,7 @@ def help(request):
 
 def helpCode(request):
     print("hello1")
-    print(request.POST.foo)
+    print(request.GET['foo'])
     print("hello2")
     try:
         row = session.execute("SELECT senderid, senderusername, messagecontent, sent_at from unisupport.messages WHERE receiverid = 2 ALLOW FILTERING;")
