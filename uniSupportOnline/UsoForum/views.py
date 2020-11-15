@@ -160,10 +160,7 @@ def signupCode(request):
         row = session.execute('SELECT MAX(userid) AS max FROM unisupport.users')
         userid = row[0][0] + 1
         row = session.execute("INSERT INTO unisupport.users (userid, accounttype, email, password, username) VALUES (%s, %s, %s, %s, %s);",[userid, 'User', email, password, username])
-        if not row:
-            response = {"bool": False, "user": "", "message": "Unsuccesfully signed up."}
-        else:
-            response={"bool": True, "user": username, "message": "Succesfully signed up as "+username}
+        response={"bool": True, "user": username, "message": "Succesfully signed up as "+username}
     else:
         response = {"bool": False, "user": "", "message": "Unsuccesfully signed up."}
 
