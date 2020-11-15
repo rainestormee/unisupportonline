@@ -33,7 +33,7 @@ function switchChatMessage(name) {
         } else {
             e.classList.remove("active")
         }
-        $.post('http://unisupport.online/', [{"foo": "fuck you alex"}], function (response) {
+        $.post('http://unisupport.online/helpCode', [{"foo": "fuck you alex"}], function (response) {
             if (response.success) {
 
             }
