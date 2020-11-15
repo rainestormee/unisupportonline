@@ -2,8 +2,8 @@ import hashlib
 from cassandra.auth import PlainTextAuthProvider
 from cassandra.cluster import Cluster
 from cassandra.query import tuple_factory
-import os
 import re
+import os
 from django.shortcuts import render
 
 cloud_config = {
@@ -78,9 +78,59 @@ def help(request):
 
     messages = reversed(sorted(messages, key=lambda x: x['time']))
 
-    print(contacts)
+    #print(contacts)
     # print("dingdong")
     return render(request, 'help.html', {'users': contacts, 'messages': messages})
+
+def helpCode(request):
+    print("hello1")
+    try:
+        otherPerson=request.GET['foo']
+        print(otherPerson)
+    except:
+        return None;
+    print("hello2")
+    try:
+        row = session.execute("SELECT senderid, senderusername, messagecontent, sent_at from unisupport.messages WHERE receiverid = 2 ALLOW FILTERING;")
+    except BaseException:
+        row = []
+    contacts = []
+
+    row = reversed(list(row))
+
+    for user_row in row:
+        inContacts = False
+        addRow = {'id': user_row[0], 'name': user_row[1], 'content': user_row[2], 'timestamp': user_row[3]}
+        for i in range(len(contacts)):
+            if subset_dic({'id': user_row[0], 'name': user_row[1]}, contacts[i]):
+                inContacts = True
+        if inContacts == False:
+            contacts.append(addRow)
+        print(user_row)
+
+    otherPersonID=session.execute("SELECT userid FROM unisupport.users where username = %s ALLOW FILTERING ;",[otherPerson])
+
+    loggedInUser = session.execute(
+        "select * from unisupport.messages WHERE receiverid = 2 and senderid = %s ALLOW FILTERING;",[otherPersonID])
+
+    otherUser = session.execute(
+        "select * from unisupport.messages WHERE receiverid = %s and senderid = 2 ALLOW FILTERING;",[otherPersonID])
+
+    # sender #receiver #time #message
+    
+    messages = []
+    for i in loggedInUser:
+        messages.append({"sender": i[4], "receiver": i[6],
+                         "time": i[1], "message": i[2]})
+
+    for i in otherUser:
+        messages.append({"sender": i[4], "receiver": i[6],
+                         "time": i[1], "message": i[2]})
+
+    messages = reversed(sorted(messages, key=lambda x: x['time']))
+    return render(request,'help.html', {'users': contacts, 'messages': messages})
+
+
 
 
 def login(request):
@@ -101,6 +151,8 @@ def loginCode(request):
     else:
         response = {"bool": True, "user": username, "message": "You are logged in as " + username}
 
+    request.session['member_id'] = username
+
     return render(request, 'login.html', {'response': response})
 
     # DO LOGIN STUFF HERE OR PARSE VALUES WHERE YOU WANT
@@ -112,6 +164,9 @@ def search(request):
 
 def signup(request):
     return render(request, 'signup.html')
+
+
+
 
 def validateEmail(email):
     regex = r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)"
