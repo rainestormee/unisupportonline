@@ -166,6 +166,7 @@ def login(request):
 
 
 def loginCode(request):
+<<<<<<< HEAD
     try:
         username = request.COOKIES['username']
 
@@ -175,6 +176,8 @@ def loginCode(request):
         isLogged = False
     else:
         isLogged = True
+=======
+>>>>>>> d2f013628e1869e64b9d18f552bf762aea5fb7a1
 
     username = request.POST.get('username')
     password = request.POST.get('password')
@@ -189,11 +192,32 @@ def loginCode(request):
     if not row:
         response = render(request, 'login.html')
 
+    else
+
+    try:
+        username=request.COOKIES['username']
+        
+    except:
+        username=""
+    if len(username)<1:
+        isLogged=False
     else:
+<<<<<<< HEAD
         userlogged = {'username': username, 'bool': True}
         response = redirect("/")
         response.set_cookie('username', username)
         return response
+=======
+        isLogged=True
+
+    userlogged={'username':username,'bool':isLogged}
+
+    userlogged={'username':username,'bool':True}
+    response=render(request, 'home.html',{'userlogged':userlogged})
+    response.set_cookie('username', username)
+    return response
+
+>>>>>>> d2f013628e1869e64b9d18f552bf762aea5fb7a1
 
     # return render(request, 'login.html', {'response': response, 'userlogged': userlogged})
 
