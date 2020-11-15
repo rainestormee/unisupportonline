@@ -79,10 +79,10 @@ def SetCookie(request):
 def help(request):
     try:
         username = request.COOKIES['username']
+        row = session.execute("SELECT userid FROM unisupport.users WHERE username = %s;", username)
     except:
         username = ""
 
-    row = session.execute("SELECT userid FROM unisupport.users WHERE username = %s;", username)
 
     try:
         usernameId = row[0][0]
@@ -93,12 +93,12 @@ def help(request):
 
     if len(username) < 1:
         isLogged = False
-        userlogged = {'username': '', 'bool': False, 'id': -1}
+        userlogged = {'username': '', 'bool': False}
         return render(request, 'home.html', {'userlogged': userlogged})
 
     else:
         isLogged = True
-    userlogged = {'username': username, 'bool': isLogged, 'id': usernameId}
+    userlogged = {'username': username, 'bool': isLogged}
 
     try:
         otherPerson = request.GET['foo']
@@ -147,7 +147,7 @@ def help(request):
 
     messages = reversed(sorted(messages, key=lambda x: x['time']))
     return render(request, 'help.html',
-                  {'users': contacts, 'messages': messages, 'displayUser': displayUser, 'userlogged': userlogged})
+                  {'users': contacts, 'messages': messages, 'displayUser': displayUser, 'userlogged': userlogged, 'magicid':usernameId})
 
 
 def login(request):
@@ -176,21 +176,42 @@ def loginCode(request):
     else:
         isLogged = True
 
+def loginCode(request):
     try:
         username=request.COOKIES['username']
-        
+
     except:
         username=""
     if len(username)<1:
         isLogged=False
     else:
         isLogged=True
-
     userlogged={'username':username,'bool':isLogged}
 
-    response=render(request, 'home.html',{'userlogged':userlogged})
-    response.set_cookie('username', username)
-    return response
+    username = request.POST.get('username')
+    password = request.POST.get('password')
+    password = hashlib.sha512(password.encode()).hexdigest()
+
+    row = session.execute(
+        "SELECT username, password FROM unisupport.users where username = %s AND password = %s ALLOW FILTERING;",
+        [username, password])
+    
+    request.session['member_id'] = username
+    
+    if not row:
+        response=render(request, 'login.html')
+
+    else:
+        id=session.execute("SELECT userid FROM unisupport.users WHERE username = %s ALLOW FILTERING;", [username])[0][0]
+        
+        response=render(request, 'home.html')
+        userlogged={'username':username,'bool':isLogged, 'id':id}
+        response.set_cookie('username', username)
+        response.set_cookie('id', id)
+        return response
+
+
+    return render(request, 'login.html', {'response': response, 'userlogged':userlogged})
 
 
     # return render(request, 'login.html', {'response': response, 'userlogged': userlogged})
