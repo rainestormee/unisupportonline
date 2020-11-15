@@ -175,9 +175,20 @@ def validateEmail(email):
     else:
         return True
 
-def validateField(field):
+def validateUsername(username):
     try:
-        return field.encode('ascii', 'strict')
+        username.encode('ascii', 'strict').decode()
+    except:
+        return False
+    row = session.execute("SELECT username FROM unisupport.users where username = %s ALLOW FILTERING;",[username])
+    if not row:
+        return True
+    else:
+        return False
+
+def validatePassword(password):
+    try:
+        return password.encode("ascii", 'strict')
     except:
         return None
 
@@ -186,9 +197,9 @@ def signupCode(request):
     password=request.POST.get('password')
     email=request.POST.get('email')
     
-    if(validateEmail(email) and validateField(password) is not None and validateField(username) is not None):
-        username = validateField(username).decode()
-        password = validateField(password)
+    if(validateEmail(email) and validatePassword(password) is not None and validateUsername(username) is True):
+        username = username.encode('ascii', 'strict').decode()
+        password = validatePassword(password)
         password=hashlib.sha512(password).hexdigest()
         row = session.execute('SELECT MAX(userid) AS max FROM unisupport.users')
         userid = row[0][0] + 1
