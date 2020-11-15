@@ -1,0 +1,27 @@
+
+#parallax-image{
+  background-image: url("../bigbrain2.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  height:95vh;
+  background-attachment: fixed;
+  background-size: contain;
+} 
+#parallax-image2{
+  background-image: url("../color_brain.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  height:30vw;
+  background-attachment: fixed;
+  background-size: contain;
+  background-color: white;
+}
+
+#parallax-image h1{
+  color: #666666;
+  font-size: 10vw;
+}
+
+.rows{
+  margin: 5rem;
+}

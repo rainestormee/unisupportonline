@@ -1,19 +1,30 @@
 function showResult(str) {
     if (str.length === 0) {
-        this.getConversations().forEach(e => e.style.display = "grid");
+        this.getConversations().forEach(e => {
+            e.style.visibility = "visible";
+            e.style.display = "grid";
+        });
     } else {
+        const len = this.getConversations().filter(e => e.id.toLowerCase().includes(str.toLowerCase())).length;
+
         this.getConversations().forEach(e => {
             if (e.id.toLowerCase().includes(str.toLowerCase())) {
-                //e.style.display = "grid";
+                e.style.visibility = "visible";
+                e.style.display = "grid";
             } else {
-                //e.style.display = "none";
+                if (len === 0) {
+                    e.style.visibility = "hidden";
+                } else {
+                    e.style.display = "none";
+                }
             }
         });
     }
 }
 
 function activateFirst() {
-    this.getConversations()[0].classList.add("active");
+    console.log("i want to die");
+    this.getConversations().get(0).classList.add("active");
 }
 
 function switchChatMessage(name) {
