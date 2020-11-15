@@ -61,3 +61,9 @@ function switchChatMessage(name, id) {
 function getConversations() {
     return Array.from(document.getElementById("conversation-list").children).filter(e => (e != null && e.id != null));
 }
+
+function sendForm(something) {
+    if (something.keyCode !== 13) return;
+    something.preventDefault();
+    document.getElementById("form_submit").click();
+}
