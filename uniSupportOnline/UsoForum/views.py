@@ -86,16 +86,9 @@ def login(request):
 
 
 def loginCode(request):
-<<<<<<< HEAD
-
-    username = request.POST.get('username')
-    password = request.POST.get('password')
-    print(username, password)
-=======
     username=request.POST.get('username')
     password=request.POST.get('password')
     password=hashlib.sha512(password.encode()).hexdigest()
->>>>>>> 2e711eea31d5b99d3306e5ef18c1a7b38cb3633e
 
     row = session.execute("SELECT username, password FROM unisupport.users where username = %s AND password = %s ALLOW FILTERING;",[username, password])
     if not row:
