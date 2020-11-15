@@ -45,12 +45,12 @@
 
     <!-- <a class="navbar-brand" href="index"><img src="{% static '/images/logo.png' %}" alt=""></a> -->
 
-      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-				<li class="nav-item"><a class="nav-link" href="../">Home</a></li>
-				<li class="nav-item"><a class="nav-link" href="../dashboard">Dashboard</a></li>
-				<li class="nav-item"><a class="nav-link" href="../help">Help center</a></li>
-				<li class="nav-item"><a class="nav-link" href="../search">Search</a></li>
-      </ul>
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item"><a class="nav-link" href="../">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="../dashboard">Dashboard</a></li>
+        <li class="nav-item"><a class="nav-link" href="../help">Help center</a></li>
+        <li class="nav-item"><a class="nav-link" href="../search">Search</a></li>
+    </ul>
 
     <div class="container col-md-4" style="margin-right: 0">
         Logged in as: user
@@ -69,49 +69,39 @@
         </div>
 
         <div id="conversation-list">
-			{% for user in users %}
-            <div class="conversation {{addition}}" id="{{ user.name }}" onclick="switchChatMessage('{{ user.name}}');">
-                <img alt="{{ user.1 }}" src="{% static '/images/profiles/kanye.jpg' %}"/>
-                <div class="title-text">
-                    {{ user.name }}
+            {% for user in users %}
+                <div class="conversation {{ addition }}" id="{{ user.name }}"
+                     onclick="switchChatMessage('{{ user.name }}');">
+                    <img alt="{{ user.1 }}" src="{% static '/images/profiles/kanye.jpg' %}"/>
+                    <div class="title-text">
+                        {{ user.name }}
+                    </div>
+                    <div class="created-date" id>
+                        {{ user.timestamp }}
+                    </div>
+                    <div class="conversation-message">
+                        {{ user.content }}
+                    </div>
                 </div>
-                <div class="created-date" id>
-                    Apr 16
-                </div>
-                <div class="conversation-message">
-                    {{ user.content }}
-                </div>
-            </div>
 
-			{% endfor %}
+            {% endfor %}
         </div>
         <div id="new-message-container">
             <a href="#">+</a>
         </div>
         <div id="chat-title">
-            <span>{{users.0.name}}</span>
+            <span>{{ users.0.name }}</span>
         </div>
         <div id="chat-message-list">
-            <div class="message-row you-message">
-                <div class="message-content">
-                    <div class="message-text">Oki doki</div>
-                    <div class="message-time">Apr 16</div>
-                </div>
-            </div>
-            <div class="message-row other-message">
-                <div class="message-content">
-                    <div class="message-text">
-                        Ndfsdffsdfsdfdsfsfdfsddasasasdasdasdadsdasdsadsdsaadsadsasdasddsa
-                        a
-                        sd
-                        dsa
-                        asd
-                        dwddw
-                        dwdwdw
+            {% for message in messages %}
+                <script>console.log('{{ message.receiver }}');</script>
+                <div class="message-row {% if message.receiver == 'raine' %}you-message{% else %}other-message{% endif %}">
+                    <div class="message-content">
+                        <div class="message-text">{{ message.message }}</div>
+                        <div class="message-time">{{ message.time }}</div>
                     </div>
-                    <div class="message-time">Nov 30</div>
                 </div>
-            </div>
+            {% endfor %}
         </div>
         <div id="chat-form">
             <br>
@@ -144,14 +134,14 @@
 
 <!-- Script Source Files -->
 
-	<!-- jQuery -->
-	<script src="{% static '/js/jquery-3.5.1.min.js' %}"></script>
-	<!-- Bootstrap 4.5 JS -->
-	<script src="{% static '/js/bootstrap.min.js' %}"></script>
-	<!-- Popper JS -->
-	<script src="{% static '/js/popper.min.js' %}"></script>
-	<!-- Font Awesome -->
-	<script src="{% static '/js/all.min.js' %}"></script>
+<!-- jQuery -->
+<script src="{% static '/js/jquery-3.5.1.min.js' %}"></script>
+<!-- Bootstrap 4.5 JS -->
+<script src="{% static '/js/bootstrap.min.js' %}"></script>
+<!-- Popper JS -->
+<script src="{% static '/js/popper.min.js' %}"></script>
+<!-- Font Awesome -->
+<script src="{% static '/js/all.min.js' %}"></script>
 
 <!-- End Script Source Files -->
 </body>

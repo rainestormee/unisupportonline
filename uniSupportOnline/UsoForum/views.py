@@ -42,8 +42,7 @@ def dashboard(request):
 
 def help(request):
     try:
-        row = session.execute(
-            "SELECT senderid, senderusername, messagecontent from unisupport.messages WHERE receiverid = 2 ALLOW FILTERING;")
+        row = session.execute("SELECT senderid, senderusername, messagecontent, sent_at from unisupport.messages WHERE receiverid = 2 ALLOW FILTERING;")
     except BaseException:
         row = []
     contacts = []
@@ -52,7 +51,7 @@ def help(request):
 
     for user_row in row:
         inContacts = False
-        addRow = {'id': user_row[0], 'name': user_row[1], 'content': user_row[2]}
+        addRow = {'id': user_row[0], 'name': user_row[1], 'content': user_row[2], 'timestamp': user_row[3]}
         for i in range(len(contacts)):
             if subset_dic({'id': user_row[0], 'name': user_row[1]}, contacts[i]):
                 inContacts = True
@@ -71,13 +70,13 @@ def help(request):
     messages = []
     for i in loggedInUser:
         messages.append({"sender": i[4], "receiver": i[6],
-                         "time": i[1].timestamp(), "message": i[2]})
+                         "time": i[1], "message": i[2]})
 
     for i in otherUser:
         messages.append({"sender": i[4], "receiver": i[6],
-                         "time": i[1].timestamp(), "message": i[2]})
+                         "time": i[1], "message": i[2]})
 
-    messages = sorted(messages, key=lambda x: x['time'])
+    messages = reversed(sorted(messages, key=lambda x: x['time']))
 
     print(contacts)
     # print("dingdong")
