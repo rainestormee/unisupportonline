@@ -1,12 +1,12 @@
 function showResult(str) {
     if (str.length === 0) {
-        this.getConversations().forEach(e => e.style.display = "grid");
+        this.getConversations().forEach(e => e.style.visibility = "visible");
     } else {
         this.getConversations().forEach(e => {
             if (e.id.toLowerCase().includes(str.toLowerCase())) {
-                //e.style.display = "grid";
+                e.style.visibility = "visible";
             } else {
-                //e.style.display = "none";
+                e.style.visibility = "hidden";
             }
         });
     }
