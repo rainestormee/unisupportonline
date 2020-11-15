@@ -72,7 +72,7 @@
         <div id="conversation-list">
             {% for user in users %}
                 <div class="conversation {{ addition }}" id="{{ user.name }}"
-                     onclick="switchChatMessage('{{ user.name }} {{ user.id }}');">
+                     onclick="switchChatMessage('{{ user.name }}', {{ user.id }});">
                     <img alt="{{ user.1 }}" src="{% static '/images/profiles/kanye.jpg' %}"/>
                     <div class="title-text">
                         {{ user.name }}

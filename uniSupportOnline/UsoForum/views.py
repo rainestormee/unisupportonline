@@ -41,14 +41,11 @@ def dashboard(request):
 
 
 def help(request):
-    print("hello1")
     try:
-        otherPerson=request.GET['foo']
-        otherPerson=int(otherPerson)
-        print(otherPerson)
-    except:
-        otherPerson=3
-    print("hello2")
+        otherPerson = request.GET['foo']
+        otherPerson = int(otherPerson)
+    except BaseException:
+        otherPerson = 3
     try:
         row = session.execute("SELECT senderid, senderusername, messagecontent, sent_at from unisupport.messages WHERE receiverid = 2 ALLOW FILTERING;")
         row = sorted(row, key=lambda x: x[3])
@@ -64,15 +61,15 @@ def help(request):
         for i in range(len(contacts)):
             if subset_dic({'id': user_row[0], 'name': user_row[1]}, contacts[i]):
                 inContacts = True
-        if inContacts == False:
+        if not inContacts:
             contacts.append(addRow)
         print(user_row)
 
     loggedInUser = session.execute(
-        "select * from unisupport.messages WHERE receiverid = 2 and senderid = %s ALLOW FILTERING;",[otherPerson])
+        "select * from unisupport.messages WHERE receiverid = 2 and senderid = %s ALLOW FILTERING;", [otherPerson])
 
     otherUser = session.execute(
-        "select * from unisupport.messages WHERE receiverid = %s and senderid = 2 ALLOW FILTERING;",[otherPerson])
+        "select * from unisupport.messages WHERE receiverid = %s and senderid = 2 ALLOW FILTERING;", [otherPerson])
 
     # sender #receiver #time #message
 
@@ -133,7 +130,7 @@ def validateEmail(email):
 
 def validateUsername(username):
     try:
-        username.encode('ascii', 'strict').decode()
+        username = username.encode('ascii', 'strict').decode()
     except:
         return False
     row = session.execute("SELECT username FROM unisupport.users where username = %s ALLOW FILTERING;",[username])
@@ -160,10 +157,7 @@ def signupCode(request):
         row = session.execute('SELECT MAX(userid) AS max FROM unisupport.users')
         userid = row[0][0] + 1
         row = session.execute("INSERT INTO unisupport.users (userid, accounttype, email, password, username) VALUES (%s, %s, %s, %s, %s);",[userid, 'User', email, password, username])
-        if not row:
-            response = {"bool": False, "user": "", "message": "Unsuccesfully signed up."}
-        else:
-            response={"bool": True, "user": username, "message": "Succesfully signed up as "+username}
+        response={"bool": True, "user": username, "message": "Succesfully signed up as "+username}
     else:
         response = {"bool": False, "user": "", "message": "Unsuccesfully signed up."}
 
