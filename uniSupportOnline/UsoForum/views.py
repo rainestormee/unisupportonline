@@ -4,7 +4,12 @@ import os
 from cassandra.auth import PlainTextAuthProvider
 from cassandra.cluster import Cluster
 from cassandra.query import tuple_factory
+<<<<<<< HEAD
+import os
+import re
+=======
 from django.shortcuts import render
+>>>>>>> 8c483e65a8521e20bd4ad9e7767db6af255427af
 
 cloud_config = {
     'secure_connect_bundle': os.path.join(os.path.realpath(os.path.dirname(__file__)),
@@ -113,6 +118,39 @@ def search(request):
 def signup(request):
     return render(request, 'signup.html')
 
+def validateEmail(email):
+    regex = r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)"
+    if not re.match(regex, email):
+        return False
+    else:
+        return True
+
+def validateField(field):
+    try:
+        return field.encode('ascii', 'strict')
+    except:
+        return None
+
+def signupCode(request):
+    username=request.POST.get('username')
+    password=request.POST.get('password')
+    email=request.POST.get('email')
+    
+    if(validateEmail(email) and validateField(password) is not None and validateField(username) is not None):
+        username = validateField(username).decode()
+        password = validateField(password)
+        password=hashlib.sha512(password).hexdigest()
+        row = session.execute('SELECT MAX(userid) AS max FROM unisupport.users')
+        userid = row[0][0] + 1
+        row = session.execute("INSERT INTO unisupport.users (userid, accounttype, email, password, username) VALUES (%s, %s, %s, %s, %s);",[userid, 'User', email, password, username])
+        if not row:
+            response = {"bool": False, "user": "", "message": "Unsuccesfully signed up."}
+        else:
+            response={"bool": True, "user": username, "message": "Succesfully signed up as "+username}
+    else:
+        response = {"bool": False, "user": "", "message": "Unsuccesfully signed up."}
+
+    return render(request, 'signup.html', {'response': response})
 
 def terms(request):
     return render(request, 'terms.html')

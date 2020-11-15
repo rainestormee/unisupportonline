@@ -62,29 +62,20 @@
 <!-- Start Main -->
 <section class='main'>
     <div class="row">
-        <form action="POST">
-            <div class="login-box">
-                <h1>Login</h1>
-
-                <div class="textbox">
-                    <i aria-hidden="true" class="fa fa-user"></i>
-                    <input name="username" placeholder="Username" type="text" value="{{ user }}">
-                </div>
-
-                <div class="textbox">
-                    <i aria-hidden="true" class="fa fa-email"></i>
-                    <input name="email" placeholder="Email" type="text" value="{{ email }}">
-                </div>
+        <div class="login-box">
+            <h1>Signup Page</h1>
+  
+            <div class="login">
+              <form action="/signupCode/" method="post">
+                {% csrf_token %}
+                <label for="username">Username:</label> <input type="text" id="username" name ="username" required><br>
+                <label for="email">Email:</label> <input type="text" id="email" name ="email" required><br>
+                <label for="password">Password:</label> <input type="text" id="password" name = "password" required><br>
                 
-                <div class="textbox">
-                    <i aria-hidden="true" class="fa fa-lock"></i>
-                    <input name="password" placeholder="Password" type="password" value="{{ pass }}">
-                </div>
-
-                <input class="button" name="login" type="submit" value="Sign In">
+                <br>
+                <label for="submit"><input id="submit" name="submit" type="submit" value="Sign me up baby!"></label>
             </div>
-        </form>
-
+        </div>
     </div>
 </section>
 
