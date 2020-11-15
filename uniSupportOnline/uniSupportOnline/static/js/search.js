@@ -1,12 +1,22 @@
 function showResult(str) {
     if (str.length === 0) {
-        this.getConversations().forEach(e => e.style.display = "grid");
+        this.getConversations().forEach(e => {
+            e.style.visibility = "visible";
+            e.style.display = "grid";
+        });
     } else {
+        const len = this.getConversations().filter(e => e.id.toLowerCase().includes(str.toLowerCase())).length;
+
         this.getConversations().forEach(e => {
             if (e.id.toLowerCase().includes(str.toLowerCase())) {
+                e.style.visibility = "visible";
                 e.style.display = "grid";
             } else {
-                e.style.display = "none";
+                if (len > 0) {
+                    e.style.display = "none";
+                } else {
+                    e.style.visibility = "hidden";
+                }
             }
         });
     }
