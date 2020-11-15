@@ -25,15 +25,46 @@ def subset_dic(subset, superset):
 # Create your views here.
 
 def home(request):
-    return render(request, 'home.html')
+    try:
+        username=request.COOKIES['username']
+        
+    except:
+        username=""
+    if len(username)<1:
+        isLogged=False
+    else:
+        isLogged=True
+    userlogged={'username':username,'bool':isLogged}
+    
+    return render(request, 'home.html', {'userlogged':userlogged})
 
 
 def about(request):
-    return render(request, 'about.html')
+    try:
+        username=request.COOKIES['username']
+        
+    except:
+        username=""
+    if len(username)<1:
+        isLogged=False
+    else:
+        isLogged=True
+    userlogged={'username':username,'bool':isLogged}
+    return render(request, 'about.html', {'userlogged':userlogged})
 
 
 def contact(request):
-    return render(request, 'contact.html')
+    try:
+        username=request.COOKIES['username']
+        
+    except:
+        username=""
+    if len(username)<1:
+        isLogged=False
+    else:
+        isLogged=True
+    userlogged={'username':username,'bool':isLogged}
+    return render(request, 'contact.html', {'userlogged':userlogged})
 """
 def SetCookie(request):
     response = HttpResponse('Visiting for the first time')
@@ -42,6 +73,17 @@ def SetCookie(request):
 """
 
 def help(request):
+    try:
+        username=request.COOKIES['username']
+        
+    except:
+        username=""
+    if len(username)<1:
+        isLogged=False
+    else:
+        isLogged=True
+    userlogged={'username':username,'bool':isLogged}
+
 
 
 
@@ -94,10 +136,32 @@ def help(request):
 
 
 def login(request):
+    try:
+        username=request.COOKIES['username']
+        
+    except:
+        username=""
+    if len(username)<1:
+        isLogged=False
+    else:
+        isLogged=True
+    userlogged={'username':username,'bool':isLogged}
+
     return render(request, 'login.html')
 
 
 def loginCode(request):
+    try:
+        username=request.COOKIES['username']
+        
+    except:
+        username=""
+    if len(username)<1:
+        isLogged=False
+    else:
+        isLogged=True
+    userlogged={'username':username,'bool':isLogged}
+
     username = request.POST.get('username')
     password = request.POST.get('password')
     password = hashlib.sha512(password.encode()).hexdigest()
@@ -117,22 +181,55 @@ def loginCode(request):
         return response
 
 
-    return render(request, 'login.html', {'response': response})
+    return render(request, 'login.html', {'response': response, 'userlogged':userlogged})
 
 
     # DO LOGIN STUFF HERE OR PARSE VALUES WHERE YOU WANT
 def logout(request):
+    try:
+        username=request.COOKIES['username']
+        
+    except:
+        username=""
+    if len(username)<1:
+        isLogged=False
+    else:
+        isLogged=True
+    userlogged={'username':username,'bool':isLogged}
+
     response=render(request, 'login.html')
     response.set_cookie('username', '')
     return response
 
 
 def search(request):
-    return render(request, 'search.html')
+    try:
+        username=request.COOKIES['username']
+        
+    except:
+        username=""
+    if len(username)<1:
+        isLogged=False
+    else:
+        isLogged=True
+    userlogged={'username':username,'bool':isLogged}
+
+    return render(request, 'search.html', {'userlogged':userlogged})
 
 
 def signup(request):
-    return render(request, 'signup.html')
+    try:
+        username=request.COOKIES['username']
+        
+    except:
+        username=""
+    if len(username)<1:
+        isLogged=False
+    else:
+        isLogged=True
+    userlogged={'username':username,'bool':isLogged}
+
+    return render(request, 'signup.html', {'userlogged':userlogged})
 
 def validateEmail(email):
     regex = r"(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)"
@@ -159,6 +256,17 @@ def validatePassword(password):
         return None
 
 def signupCode(request):
+    try:
+        username=request.COOKIES['username']
+        
+    except:
+        username=""
+    if len(username)<1:
+        isLogged=False
+    else:
+        isLogged=True
+    userlogged={'username':username,'bool':isLogged}
+    
     username=request.POST.get('username')
     password=request.POST.get('password')
     email=request.POST.get('email')
@@ -181,7 +289,7 @@ def signupCode(request):
     return render(request, 'signup.html', {'response': response})
 
 def terms(request):
-    return render(request, 'terms.html')
+    return render(request, 'terms.html', {'userlogged':userlogged})
 
 def discussions(request):
 
