@@ -20,61 +20,41 @@
 </head>
 <body>
 
-<!-- Top Bar -->
-<div class="top-bar sticky-top">
+  <!-- Top Bar -->
+  <div class="top-bar bg-dark sticky-top">
     <div class="container">
-        <div class="col-12 text-right">
-            <p><a href="tel:+1234">Emergency line: +123 456 789</a></p>
-        </div>
+      <div class="col-12 text-right">
+        <p><a href="tel:+1234">Emergency line:  +123 456 789</a></p>
+      </div>
 
     </div>
-</div>
-<!-- End Top Bar -->
-
-
-<!-- Navigation -->
-<div class="jumbotron">
-    <h1>UniSupport</h1>
-    <p>Your safe space</p>
-</div>
-<nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
-    <button class="navbar-toggler" data-target="collapse_target" data-toggle="collapse">
-        <span class="navbar-togler-icon"></span>
-    </button>
-
-    <!-- <a class="navbar-brand" href="index"><img src="{% static '/images/logo.png' %}" alt=""></a> -->
-
-      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-				<li class="nav-item"><a class="nav-link" href="../">Home</a></li>
-				<li class="nav-item"><a class="nav-link" href="../dashboard">Dashboard</a></li>
-				<li class="nav-item"><a class="nav-link" href="../help">Help center</a></li>
-				<li class="nav-item"><a class="nav-link" href="../search">Search</a></li>
-      </ul>
-
-    <div class="container col-md-4" style="margin-right: 0%">
-        Logged in as: user
-    </div>
-
-</nav>
-<!-- End Navigation -->
-
+  </div>
+  <!-- End Top Bar -->
 
 <!-- Start Main -->
-<section class='main'>
-    <div class="row">
+<section class="container-fluid" style="padding-top: 15vw">
+  <section class="row justify-content-center" >
+    <section class="col-12 col-sm-6 col-md-3">
+      <form action="/loginCode/" method="post" class="form-container" style="background-color: white; border-radius: 10px;padding: 30px;box-shadow: 0px 0px 10px 0px;">
+        <h4 class="text-center">Login</h4>
+        <div class="form-group">
+          <label for="username">Email address</label>
+          <input type="email" class="form-control" id="username" aria-describedby="emailHelp" placeholder="Enter email" required>
+          <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" id="password" placeholder="Password" required>
+        </div>
+        <div class="form-group form-check">
+          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+          <label class="form-check-label" for="exampleCheck1">Remember me</label>
+        </div>
+        <button type="submit" class="btn text-white btn-block" style="background-color: #944540">Submit</button>
+      </form>
 
-      <div class="login-box">
-          <h1>Login</h1>
-
-          <div class="login">
-            <form action="/loginCode/" method="post">
-              {% csrf_token %}
-              <label for="username">Username:</label> <input type="text" id="username" name ="username" required><br>
-              <label for="password">Password:</label> <input type="text" id="password" name = "password" required><br>
-              <br>
-              <label for="submit"><input id="submit" name="submit" type="submit" value="Login"></label>
-          </div>
-      </div>
+    </section>
+  </section>
       <p>
         {{ response.message }}
       </p>
