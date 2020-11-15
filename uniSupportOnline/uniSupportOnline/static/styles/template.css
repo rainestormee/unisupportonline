@@ -1,5 +1,4 @@
 /*-- Body Reset --*/
-
 body {
   overflow-x: hidden;
   font-family: 'Montserrat', sans-serif;
@@ -22,19 +21,18 @@ body {
 }
 
 
-#header {
-  background-image: url('/static/images/help2.jpg');
+#header{
   background-position: right;
   background-size: contain;
-  background-color: red;
+  background-color: #944540;
   color: white;
   background-repeat: no-repeat;
   margin: 0px;
 }
 
-
 .navbar{
-  height: 4rem;
+  height: 5rem;
+  z-index: 2;
 }
 
 .main{
@@ -44,8 +42,8 @@ body {
 footer  {
   background: #222;
   height: auto;
-  padding-top: 2rem;
-  padding-bottom: 2rem;
+  padding-top: 2vw;
+  padding-bottom: 2vw;
 }
 footer a, a:hover{
   color: white;
@@ -56,8 +54,12 @@ footer a, a:hover{
 @media (max-width: 1199.98px) {
 
 }
-/* Devices under 768px (md) */
-@media (max-width: 767.98px) {
+/* Devices under 640px (md) */
+@media (max-width: 640px) {
+
+}
+/* Devices under 640px (sm) */
+@media (max-width: 360px) {
 
 }
 
